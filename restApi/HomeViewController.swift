@@ -150,7 +150,7 @@ class HomeViewController: UIViewController {
             graphFollowersView.backgroundColor = UIColor.white
             graphFollowersView.center.x = self.view.center.x
             scrollView.addSubview(graphFollowersView)
-            print(viewY)
+            print("viewY")
             
             // Adding scroll view to main view
             scrollView.contentSize = CGSize(width: screenSize.width, height: 2000)
