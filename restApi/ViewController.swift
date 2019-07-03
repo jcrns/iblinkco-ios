@@ -274,6 +274,29 @@ class ViewController: UIViewController {
                             let totalNumberOfFollowers = userDataReturned.twitter.userData.followers_count as! Int
                             let tips = userDataReturned.tips
                             let bio = userDataReturned.twitter.userData.description
+                            let twitterFollowersHistory = userDataReturned.twitter.history.followers
+                            
+                            // Putting twitter follower history in list
+                            var twitterFollowersHistoryDate = [String]()
+                            var twitterFollowersHistoryFollowerCount = [Int]()
+                            
+                            // Formatting twitter history data with for loop
+                            for followerDay in twitterFollowersHistory{
+                                // Date
+                                var followerDate = followerDay.date as! String
+                                twitterFollowersHistoryDate.append(followerDate)
+                                // Follower number
+                                var followerNumber = followerDay.followers_count as! Int
+                                twitterFollowersHistoryFollowerCount.append(followerNumber)
+                            }
+                            
+                            print(twitterFollowersHistoryDate)
+                            print(twitterFollowersHistoryFollowerCount)
+
+                            print(twitterFollowersHistory[0].date)
+                            print("sec \n\n\n")
+                            print(twitterFollowersHistory[1])
+//                            print(twitterFollowersHistoryDate)
                             
                             // Putting specific data in session
                             defaults.set(bio, forKey:"twitterBio");
@@ -287,6 +310,10 @@ class ViewController: UIViewController {
                             defaults.set(totalNumberOfFollowers, forKey:"totalNumberOfFollowers");
                             defaults.synchronize();
                             defaults.set(tips, forKey:"tips");
+                            defaults.synchronize();
+                            defaults.set(twitterFollowersHistoryDate, forKey:"twitterFollowersHistoryDate");
+                            defaults.synchronize();
+                            defaults.set(twitterFollowersHistoryFollowerCount, forKey:"twitterFollowersHistoryFollowerCount");
                             defaults.synchronize();
                             print("aaaa")
                             // Changing View

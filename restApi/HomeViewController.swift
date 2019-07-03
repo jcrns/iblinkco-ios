@@ -8,6 +8,9 @@
 
 import UIKit
 
+// Importing Chart Lib
+import Charts
+
 class HomeViewController: UIViewController {
     @IBOutlet weak var labelWelcome: UILabel!
     @IBOutlet weak var numberOfFollow: UILabel!
@@ -46,6 +49,11 @@ class HomeViewController: UIViewController {
             let twitterBio = UserDefaults.standard.object(forKey: "twitterBio") as! String
             print(twitterBio)
             
+            let twitterFollowersHistoryDate = UserDefaults.standard.stringArray(forKey: "twitterFollowersHistoryDate") ?? [String]()
+            
+            let twitterFollowersHistoryFollowerCount = UserDefaults.standard.stringArray(forKey: "twitterFollowersHistoryFollowerCount") ?? [String]()
+
+            
             
             // Getting Screensize
             let screenSize: CGRect = UIScreen.main.bounds
@@ -53,6 +61,10 @@ class HomeViewController: UIViewController {
             // Creating Scrollong view
             var scrollView: UIScrollView!
             scrollView = UIScrollView(frame: CGRect(x: 0, y: 0, width: screenSize.width, height: screenSize.height))
+            
+            // Creating needed colors
+            let blueButton = UIColor(red: 30/255.0, green: 144/255.0, blue: 255/255.0, alpha: 1.0)
+            
             
             // Defining needed variables
             let viewHeight = 128
@@ -145,18 +157,107 @@ class HomeViewController: UIViewController {
             scrollView.addSubview(twitterBioLabel)
             
             // Adding graph to phone
+            
+            // Creating graph view
             viewY = viewY + 100
-            let graphFollowersView = UIView(frame: CGRect(x: 0, y: viewY, width: Int(screenSize.width), height: viewHeight + 175))
-            graphFollowersView.backgroundColor = UIColor.white
-            graphFollowersView.center.x = self.view.center.x
-            scrollView.addSubview(graphFollowersView)
-            print("viewY")
+            let lineChartView = LineChartView(frame: CGRect(x: 0, y: viewY, width: Int(screenSize.width), height: viewHeight + 175))
+            lineChartView.backgroundColor = UIColor.white
+            lineChartView.center.x = self.view.center.x
+            viewY = viewY + viewHeight
+            
+            // Importing graph
+            let count = Int(arc4random_uniform(20) + 3)
+
+            let values = (0..<count).map { (i) -> ChartDataEntry in
+                let val = Double(arc4random_uniform(UInt32(count)) + 3)
+                return ChartDataEntry(x: Double(i), y: val)
+            }
+            
+            let set1 = LineChartDataSet(values: values, label: "Followers Twitter")
+            let data = LineChartData(dataSet: set1)
+            lineChartView.data = data
+            scrollView.addSubview(lineChartView)
+            
+            // Competition View
+            viewY = viewY + 265
+            let competitionView = UIView(frame: CGRect(x: 0, y: viewY, width: Int(screenSize.width), height: viewHeight))
+            competitionView.backgroundColor = UIColor.white
+            competitionView.center.x = self.view.center.x
+            
+            scrollView.addSubview(competitionView)
+
+            
+            // Competition button and view change
+            viewY = viewY + 64
+            let competitionViewButton = UIButton(frame: CGRect(x: 0, y: 50, width: Int(screenSize.width)/2, height: 40))
+            competitionViewButton.center = CGPoint(x: 225, y: viewY)
+            competitionViewButton.backgroundColor = blueButton
+            competitionViewButton.setTitle("Find Competition", for: .normal)
+            competitionViewButton.center.x = self.view.center.x
+            scrollView.addSubview(competitionViewButton)
+            
+            viewY = viewY + 36
+            let competitionSmallText = UILabel(frame: CGRect(x: 0, y: 50, width: Int(screenSize.width), height: 160))
+            competitionSmallText.center = CGPoint(x: 160, y: viewY)
+            competitionSmallText.textColor = .black
+            competitionSmallText.textAlignment = .center
+            competitionSmallText.text = "These are Searches Related to your You"
+            competitionSmallText.center.x = self.view.center.x
+            competitionSmallText.font = competitionSmallText.font.withSize(12)
+            scrollView.addSubview(competitionSmallText)
+            
+            // Followers Data
+            viewY = viewY + 123
+            let followersDataView = UIView(frame: CGRect(x: 0, y: viewY, width: Int(screenSize.width), height: viewHeight))
+            followersDataView.backgroundColor = UIColor.white
+            followersDataView.center.x = self.view.center.x
+            scrollView.addSubview(followersDataView)
+            
+            
+            // Followers data button and view change
+            viewY = viewY + 64
+            let followersDataViewButton = UIButton(frame: CGRect(x: 0, y: 50, width: Int(screenSize.width)/2, height: 40))
+            followersDataViewButton.center = CGPoint(x: 225, y: viewY)
+            followersDataViewButton.backgroundColor = blueButton
+            followersDataViewButton.setTitle("Get Followers", for: .normal)
+            followersDataViewButton.center.x = self.view.center.x
+            scrollView.addSubview(followersDataViewButton)
+            
+            viewY = viewY + 36
+            let followersDataSmallText = UILabel(frame: CGRect(x: 0, y: 50, width: Int(screenSize.width), height: 160))
+            followersDataSmallText.center = CGPoint(x: 160, y: viewY)
+            followersDataSmallText.textColor = .black
+            followersDataSmallText.textAlignment = .center
+            followersDataSmallText.text = "Find out data about your followers"
+            followersDataSmallText.center.x = self.view.center.x
+            followersDataSmallText.font = followersDataSmallText.font.withSize(12)
+            scrollView.addSubview(followersDataSmallText)
+            
+            // Website Data
+            viewY = viewY + 128
+            let websiteView = UIView(frame: CGRect(x: 0, y: viewY, width: Int(screenSize.width), height: viewHeight*2))
+            websiteView.backgroundColor = UIColor.white
+            websiteView.center.x = self.view.center.x
+            scrollView.addSubview(websiteView)
+            
+            print(viewY)
+            
+            viewY = viewY + 25
+            let websiteTitle = UILabel(frame: CGRect(x: 0, y: 50, width: Int(screenSize.width), height: 160))
+            websiteTitle.center = CGPoint(x: 160, y: viewY)
+            websiteTitle.textColor = .black
+            websiteTitle.textAlignment = .center
+            websiteTitle.text = "Connected Website"
+            websiteTitle.center.x = self.view.center.x
+            websiteTitle.font = websiteTitle.font.withSize(20)
+            scrollView.addSubview(websiteTitle)
             
             // Adding scroll view to main view
-            scrollView.contentSize = CGSize(width: screenSize.width, height: 2000)
+            let scrollHeight = viewY + 100
+            scrollView.contentSize = CGSize(width: screenSize.width, height: 1700)
             self.view.addSubview(scrollView)
         }
-        
+
         // Do any additional setup after loading the view.
     }
     /*
