@@ -1,6 +1,6 @@
 
 //
-//  ViewController.swift
+//  AuthenticationViewController.swift
 //  restApi
 //
 //  Created by HGPMAC87 on 4/11/19.
@@ -14,6 +14,7 @@ struct parsedData: Decodable  {
     let competition: competitionData
     let tips: [String]
     let twitter: twitterData
+    let website: websiteData
     let message: String!
 }
 struct accountData: Decodable {
@@ -49,42 +50,16 @@ struct twitterFollowersHistoryData: Decodable {
 //    let following_count: Int!
 //}
 struct userDataStruct: Decodable {
-    let contributors_enabled: Bool!
-    let created_at: String!
-    let default_profile: Bool!
-    let default_profile_image: Bool!
     let description: String!
     let favorite_count: Int!
-    let follow_request_sent: Bool!
     let followers_count: Int!
     let following: Bool!
     let friends_count: Int!
-    let geo_enabled: Bool!
-    let has_extended_profile: Bool!
-    let id: Int!
-    let id_str: String!
-    let is_translation_enabled: Bool!
-    let is_translator: Bool!
-    let listed_count: Int!
     let location: String!
     let name: String!
-    let needs_phone_verification: Bool!
-    let notifications: Bool!
-    let profile_background_color: String!
-    let profile_background_title: Bool!
-    let profile_image_url: String!
-    let profile_image_url_https: String!
-    let profile_link_color: String!
-    let profile_sidebar_border_color: String!
-    let profile_sidebar_fill_color: String!
-    let profile_text_color: String!
-    let profile_use_background_image: Bool!
-    let protected: Bool!
     let screen_name: String!
     let status: statusData
     let statuses_count: Int!
-    let suspended: Bool!
-    let translator_type: String!
     let url: String!
     let verified: Bool!
 }
@@ -101,6 +76,12 @@ struct statusData: Decodable {
     let source: String!
     let text: String!
     let truncated: Bool!
+}
+struct websiteData: Decodable {
+    let website_name: String!
+    let website_url: String!
+    let header_text: String!
+    let links: [String]
 }
 //class User{
 //    var email: String
@@ -123,7 +104,7 @@ struct statusData: Decodable {
 //class UserTwitter{
 //
 //}
-class ViewController: UIViewController {
+class AuthenticationViewController: UIViewController, UIScrollViewDelegate {
     
     // Elements from UI
     @IBOutlet weak var firstnameTextField: UITextField!
@@ -271,10 +252,15 @@ class ViewController: UIViewController {
                             let name = firstname + " " + lastname
                             let competitionLink = userDataReturned.competition.link
                             let competitionTitle = userDataReturned.competition.title
+                            let twitterFollowersName = userDataReturned.twitter.followersFormated.name
+                            let twitterFollowersLocation = userDataReturned.twitter.followersFormated.location
                             let totalNumberOfFollowers = userDataReturned.twitter.userData.followers_count as! Int
                             let tips = userDataReturned.tips
                             let bio = userDataReturned.twitter.userData.description
                             let twitterFollowersHistory = userDataReturned.twitter.history.followers
+                            let websiteLinks = userDataReturned.website.links
+                            let websiteName = userDataReturned.website.website_name
+                            let websiteUrl = userDataReturned.website.website_url
                             
                             // Putting twitter follower history in list
                             var twitterFollowersHistoryDate = [String]()
@@ -295,7 +281,7 @@ class ViewController: UIViewController {
 
                             print(twitterFollowersHistory[0].date)
                             print("sec \n\n\n")
-                            print(twitterFollowersHistory[1])
+//                            print(twitterFollowersHistory[1])
 //                            print(twitterFollowersHistoryDate)
                             
                             // Putting specific data in session
@@ -307,9 +293,19 @@ class ViewController: UIViewController {
                             defaults.synchronize();
                             defaults.set(competitionTitle, forKey:"competitionTitle");
                             defaults.synchronize();
+                            defaults.set(twitterFollowersName, forKey:"twitterFollowersName");
+                            defaults.synchronize();
+                            defaults.set(twitterFollowersLocation, forKey:"twitterFollowersLocation");
+                            defaults.synchronize();
                             defaults.set(totalNumberOfFollowers, forKey:"totalNumberOfFollowers");
                             defaults.synchronize();
                             defaults.set(tips, forKey:"tips");
+                            defaults.synchronize();
+                            defaults.set(websiteLinks, forKey:"websiteLinks");
+                            defaults.synchronize();
+                            defaults.set(websiteName, forKey:"websiteName");
+                            defaults.synchronize();
+                            defaults.set(websiteUrl, forKey:"websiteUrl");
                             defaults.synchronize();
                             defaults.set(twitterFollowersHistoryDate, forKey:"twitterFollowersHistoryDate");
                             defaults.synchronize();
@@ -345,6 +341,7 @@ class ViewController: UIViewController {
                 "lastname": lastname,
                 "email": email,
                 "password": password,
+                "software": "ios"
                 ]
             
             // Getting url of json post

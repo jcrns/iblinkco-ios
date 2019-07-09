@@ -10,10 +10,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Authentication View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="restApi" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="AuthenticationViewController" customModule="restApi" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -124,13 +124,56 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="Q5V-7u-uZw"/>
                     </view>
+                    <connections>
+                        <segue destination="scZ-od-tCk" kind="show" identifier="homeToCompetitionSegue" id="dBc-ee-Jvj"/>
+                        <segue destination="Rvh-3r-jlm" kind="show" identifier="homeToFollowersDataSegue" id="cTN-CZ-IjM"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sHp-Lq-IaC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="837.60000000000002" y="133.5832083958021"/>
         </scene>
+        <!--Followers Data View Controller-->
+        <scene sceneID="MSy-uF-BSn">
+            <objects>
+                <viewController id="Rvh-3r-jlm" customClass="FollowersDataViewController" customModule="restApi" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="zXO-XI-bof">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="VRD-av-ZIo"/>
+                    </view>
+                    <connections>
+                        <segue destination="PuM-pz-ftA" kind="show" identifier="followersDataToHomeSegue" id="6Du-bG-tJ5"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="lIW-JY-S5H" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="838" y="880"/>
+        </scene>
+        <!--Competition View Controller-->
+        <scene sceneID="Rjw-YC-dTT">
+            <objects>
+                <viewController id="scZ-od-tCk" customClass="CompetitionViewController" customModule="restApi" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="u66-2X-LMh">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="l1N-wc-vD7"/>
+                    </view>
+                    <connections>
+                        <segue destination="PuM-pz-ftA" kind="show" identifier="competitionToHomeSegue" id="YM3-qS-TzP"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="r0p-Gx-emE" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1606" y="134"/>
+        </scene>
     </scenes>
     <resources>
         <image name="headerlogowebsite" width="120.23999786376953" height="44.159999847412109"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="2xD-o6-zuN"/>
+    </inferredMetricsTieBreakers>
 </document>
