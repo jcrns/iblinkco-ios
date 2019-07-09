@@ -49,12 +49,12 @@ class CompetitionViewController: UIViewController, UITableViewDelegate, UITableV
         self.view.addSubview(competitionTableView)
         
         // Recognizing swipe right gesture
-        let competitionSwipeRightGesture = UISwipeGestureRecognizer(target: self, action: #selector(self.competitionToHomeFunction))
+        let competitionSwipeRightGesture = UISwipeGestureRecognizer(target: self, action: #selector(self.competitionToHomeSegueFunction))
         competitionSwipeRightGesture.direction = UISwipeGestureRecognizer.Direction.right
         self.view.addGestureRecognizer(competitionSwipeRightGesture)
     }
     // Swipe right function
-    @objc func competitionToHomeFunction(fromGesture gesture: UISwipeGestureRecognizer) {
+    @objc func competitionToHomeSegueFunction(fromGesture gesture: UISwipeGestureRecognizer) {
         self.performSegue(withIdentifier: "competitionToHomeSegue", sender: self)
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

@@ -49,12 +49,12 @@ class FollowersDataViewController: UIViewController, UITableViewDelegate, UITabl
         self.view.addSubview(followersDataTableView)
         
         // Recognizing swipe right gesture
-        let followersDataSwipeRightGesture = UISwipeGestureRecognizer(target: self, action: #selector(self.FollowersDataToHomeFunction))
+        let followersDataSwipeRightGesture = UISwipeGestureRecognizer(target: self, action: #selector(self.FollowersDataToHomeSegueFunction))
         followersDataSwipeRightGesture.direction = UISwipeGestureRecognizer.Direction.right
         self.view.addGestureRecognizer(followersDataSwipeRightGesture)
     }
     // Swipe right function
-    @objc func FollowersDataToHomeFunction(fromGesture gesture: UISwipeGestureRecognizer) {
+    @objc func FollowersDataToHomeSegueFunction(fromGesture gesture: UISwipeGestureRecognizer) {
         self.performSegue(withIdentifier: "followersDataToHomeSegue", sender: self)
     }
     // Table view functions

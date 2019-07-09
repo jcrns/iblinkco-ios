@@ -275,8 +275,8 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
             
             // Website Data
             let websiteLinkCount = websiteLinks.count*24
-            viewY = viewY + 128
-            let websiteView = UIView(frame: CGRect(x: 0, y: viewY, width: Int(screenSize.width), height: viewHeight+websiteLinkCount))
+            viewY = viewY + 148
+            let websiteView = UIView(frame: CGRect(x: 0, y: viewY, width: Int(screenSize.width), height: viewHeight+websiteLinkCount+64))
             websiteView.backgroundColor = UIColor.white
             websiteView.center.x = self.view.center.x
             self.scrollView.addSubview(websiteView)
@@ -328,7 +328,27 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
                 websiteConnectTextBox.placeholder = "Connect your Website"
                 self.scrollView.addSubview(websiteConnectTextBox)
             }
+            // About button
+            viewY = viewY + 28
+            let aboutViewButton = UIButton(frame: CGRect(x: 0, y: 50, width: Int(screenSize.width)/2, height: 40))
+            aboutViewButton.center = CGPoint(x: 225, y: viewY)
+            aboutViewButton.backgroundColor = .white
+            aboutViewButton.setTitleColor(.black, for: .normal)
+            aboutViewButton.setTitle("About", for: .normal)
+            aboutViewButton.center.x = self.view.center.x
+            aboutViewButton.addTarget(self, action: #selector(self.aboutButtonAction), for: .touchUpInside)
+            self.scrollView.addSubview(aboutViewButton)
             
+            // Logout button
+            viewY = viewY + 36
+            let logoutHomeButton = UIButton(frame: CGRect(x: 0, y: 50, width: Int(screenSize.width)/2, height: 40))
+            logoutHomeButton.center = CGPoint(x: 225, y: viewY)
+            logoutHomeButton.backgroundColor = .white
+            logoutHomeButton.setTitleColor(.red, for: .normal)
+            logoutHomeButton.setTitle("Logout", for: .normal)
+            logoutHomeButton.center.x = self.view.center.x
+            logoutHomeButton.addTarget(self, action: #selector(self.logoutButtonAction), for: .touchUpInside)
+            self.scrollView.addSubview(logoutHomeButton)
 //            override func scrollViewWillEndDragging(scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
 //                
 //                if(velocity.y>0){
@@ -358,6 +378,20 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
         print("Button tapped")
         self.performSegue(withIdentifier: "homeToFollowersDataSegue", sender: self)
     }
+    @objc func aboutButtonAction(sender: UIButton!) {
+        print("Button tapped")
+        self.performSegue(withIdentifier: "homeToAboutSegue", sender: self)
+    }
+    @objc func logoutButtonAction(sender: UIButton!) {
+        print("Button tapped")
+        // Clearing user defaults
+        let domain = Bundle.main.bundleIdentifier!
+        UserDefaults.standard.removePersistentDomain(forName: domain)
+        UserDefaults.standard.synchronize()
+        
+        self.performSegue(withIdentifier: "homeToAuthentication", sender: self)
+    }
+
     /*
      // MARK: - Navigation
      

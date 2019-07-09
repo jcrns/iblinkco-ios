@@ -114,6 +114,24 @@
             </objects>
             <point key="canvasLocation" x="68" y="133.5832083958021"/>
         </scene>
+        <!--About View Controller-->
+        <scene sceneID="8sO-be-oBF">
+            <objects>
+                <viewController id="cjw-uU-tkZ" customClass="AboutViewController" customModule="restApi" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="OfT-nI-h9s">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="5z0-1c-Sxj"/>
+                    </view>
+                    <connections>
+                        <segue destination="PuM-pz-ftA" kind="show" identifier="aboutToHomeSegue" customClass="swipeFromLeft" customModule="restApi" customModuleProvider="target" id="W9i-HA-DtS"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Nkg-mG-0bT" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="838" y="-626"/>
+        </scene>
         <!--Home View Controller-->
         <scene sceneID="MiO-A2-FBb">
             <objects>
@@ -125,8 +143,10 @@
                         <viewLayoutGuide key="safeArea" id="Q5V-7u-uZw"/>
                     </view>
                     <connections>
-                        <segue destination="scZ-od-tCk" kind="show" identifier="homeToCompetitionSegue" id="dBc-ee-Jvj"/>
-                        <segue destination="Rvh-3r-jlm" kind="show" identifier="homeToFollowersDataSegue" id="cTN-CZ-IjM"/>
+                        <segue destination="scZ-od-tCk" kind="show" identifier="homeToCompetitionSegue" customClass="swipeFromRight" customModule="restApi" customModuleProvider="target" id="dBc-ee-Jvj"/>
+                        <segue destination="Rvh-3r-jlm" kind="show" identifier="homeToFollowersDataSegue" customClass="swipeFromRight" customModule="restApi" customModuleProvider="target" id="cTN-CZ-IjM"/>
+                        <segue destination="cjw-uU-tkZ" kind="show" identifier="homeToAboutSegue" customClass="swipeFromRight" customModule="restApi" customModuleProvider="target" id="1rm-Gb-c1B"/>
+                        <segue destination="BYZ-38-t0r" kind="show" identifier="homeToAuthentication" customClass="swipeFromLeft" customModule="restApi" customModuleProvider="target" id="9iw-XP-L09"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sHp-Lq-IaC" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -144,7 +164,7 @@
                         <viewLayoutGuide key="safeArea" id="VRD-av-ZIo"/>
                     </view>
                     <connections>
-                        <segue destination="PuM-pz-ftA" kind="show" identifier="followersDataToHomeSegue" id="6Du-bG-tJ5"/>
+                        <segue destination="PuM-pz-ftA" kind="show" identifier="followersDataToHomeSegue" customClass="swipeFromLeft" customModule="restApi" customModuleProvider="target" id="6Du-bG-tJ5"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lIW-JY-S5H" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -162,7 +182,7 @@
                         <viewLayoutGuide key="safeArea" id="l1N-wc-vD7"/>
                     </view>
                     <connections>
-                        <segue destination="PuM-pz-ftA" kind="show" identifier="competitionToHomeSegue" id="YM3-qS-TzP"/>
+                        <segue destination="PuM-pz-ftA" kind="show" identifier="competitionToHomeSegue" customClass="swipeFromLeft" customModule="restApi" customModuleProvider="target" id="YM3-qS-TzP"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="r0p-Gx-emE" userLabel="First Responder" sceneMemberID="firstResponder"/>
