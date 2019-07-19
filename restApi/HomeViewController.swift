@@ -125,51 +125,38 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
             
             print("viewY")
             print(viewY)
-            // Creating second view
-            viewY = viewY + 75
-            let twitterBioView = UIView(frame: CGRect(x: 0, y: viewY, width: Int(screenSize.width), height: viewHeight))
-            twitterBioView.backgroundColor = UIColor.white
-            twitterBioView.center.x = self.view.center.x
-            self.scrollView.addSubview(twitterBioView)
-            //        for tip in tips {
-            //            print(tip)
-            //            print(increasedHeight)
-            //
-            //            // Creating label
-            //            let label = UILabel(frame: CGRect(x: 0, y: 40, width: screenSize.width - 10, height: 40))
-            //            label.lineBreakMode = .byWordWrapping
-            //            label.numberOfLines = 0
-            //            increasedHeight = increasedHeight + 25
-            //            label.center = CGPoint(x: 160, y: increasedHeight)
-            //            label.textAlignment = .center
-            //            label.center.x = self.view.center.x
-            //            label.textColor = .black
-            //            label.text = tip
-            //            self.view.addSubview(label)
-            //
-            //        }
-            // Displaying Bio
-            viewY = viewY + 25
-            let twitterBioTitle = UILabel(frame: CGRect(x: 0, y: 50, width: Int(screenSize.width), height: 160))
-            twitterBioTitle.center = CGPoint(x: 160, y: viewY)
-            twitterBioTitle.textColor = .black
-            twitterBioTitle.textAlignment = .center
-            twitterBioTitle.text = "Twitter Bio"
-            twitterBioTitle.center.x = self.view.center.x
-            twitterBioTitle.font = twitterBioTitle.font.withSize(20)
-            self.scrollView.addSubview(twitterBioTitle)
+            // Displaying Bios
+            if twitterBio.isEmpty {
             
-            viewY = viewY + 50
-            let twitterBioLabel = UILabel(frame: CGRect(x: Int(screenSize.width)/2, y: 50, width: Int(screenSize.width - 10), height: 160))
-            twitterBioLabel.lineBreakMode = .byWordWrapping
-            twitterBioLabel.numberOfLines = 0
-            twitterBioLabel.center = CGPoint(x: 160, y: viewY)
-            twitterBioLabel.center.x = self.view.center.x
-            twitterBioLabel.textAlignment = .center
-            twitterBioLabel.textColor = .black
-            twitterBioLabel.text = twitterBio
-            self.scrollView.addSubview(twitterBioLabel)
-            
+            } else {
+                // Creating second view
+                viewY = viewY + 75
+                let twitterBioView = UIView(frame: CGRect(x: 0, y: viewY, width: Int(screenSize.width), height: viewHeight))
+                twitterBioView.backgroundColor = UIColor.white
+                twitterBioView.center.x = self.view.center.x
+                self.scrollView.addSubview(twitterBioView)
+
+                viewY = viewY + 25
+                let twitterBioTitle = UILabel(frame: CGRect(x: 0, y: 50, width: Int(screenSize.width), height: 160))
+                twitterBioTitle.center = CGPoint(x: 160, y: viewY)
+                twitterBioTitle.textColor = .black
+                twitterBioTitle.textAlignment = .center
+                twitterBioTitle.text = "Twitter Bio"
+                twitterBioTitle.center.x = self.view.center.x
+                twitterBioTitle.font = twitterBioTitle.font.withSize(20)
+                self.scrollView.addSubview(twitterBioTitle)
+                
+                viewY = viewY + 50
+                let twitterBioLabel = UILabel(frame: CGRect(x: Int(screenSize.width)/2, y: 50, width: Int(screenSize.width - 10), height: 160))
+                twitterBioLabel.lineBreakMode = .byWordWrapping
+                twitterBioLabel.numberOfLines = 0
+                twitterBioLabel.center = CGPoint(x: 160, y: viewY)
+                twitterBioLabel.center.x = self.view.center.x
+                twitterBioLabel.textAlignment = .center
+                twitterBioLabel.textColor = .black
+                twitterBioLabel.text = twitterBio
+                self.scrollView.addSubview(twitterBioLabel)
+            }
             // Adding graph to phone
             
             // Creating graph view
@@ -359,7 +346,7 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
 //            }
             // Adding scroll view to main view
             let scrollHeight = viewY + 100
-            self.scrollView.contentSize = CGSize(width: screenSize.width, height: 1700)
+            self.scrollView.contentSize = CGSize(width: screenSize.width, height: 2000)
             self.view.addSubview(self.scrollView)
             
         }

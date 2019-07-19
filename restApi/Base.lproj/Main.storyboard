@@ -18,7 +18,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="jaydencummings1000@gmail.com" borderStyle="roundedRect" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="GWj-MP-KgO">
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="iblinkcompany@gmail.com" borderStyle="roundedRect" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="GWj-MP-KgO">
                                 <rect key="frame" x="87" y="300" width="201" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="201" id="4gd-az-hGu"/>
@@ -80,7 +80,7 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                         </subviews>
-                        <color key="backgroundColor" red="1" green="0.54117647059999996" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="OMX-YL-ker" firstAttribute="top" secondItem="GWj-MP-KgO" secondAttribute="bottom" constant="15" id="2NK-fD-zJn"/>
                             <constraint firstItem="GWj-MP-KgO" firstAttribute="top" secondItem="fuc-oE-1fx" secondAttribute="bottom" constant="15" id="3H3-zU-Mek"/>
