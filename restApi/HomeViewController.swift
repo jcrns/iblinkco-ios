@@ -21,7 +21,7 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Putting all data in function
+        // Putting all data in function to run at the same time
         DispatchQueue.main.async {
             
             // Setting Background image
@@ -39,22 +39,38 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
             // Getting data from auth
             let name = UserDefaults.standard.object(forKey: "name") as! String
             print(name)
+            
+            // Competition
             let competitionLink = UserDefaults.standard.stringArray(forKey: "competitionLink") ?? [String]()
             print(competitionLink)
             
             let competitionTitle = UserDefaults.standard.stringArray(forKey: "competitionTitle") ?? [String]()
             print(competitionLink)
             
+            // Stats
             let totalNumberOfFollowers = UserDefaults.standard.object(forKey: "totalNumberOfFollowers") as! Int
             
+            // Tips
             let tips = UserDefaults.standard.stringArray(forKey: "tips") ?? [String]()
+            
+            // Website data
             let websiteLinks = UserDefaults.standard.stringArray(forKey: "websiteLinks") ?? [String]()
             let websiteName = UserDefaults.standard.object(forKey: "websiteName") as! String
             let websiteUrl = UserDefaults.standard.object(forKey: "websiteUrl") as! String
             
+            // Twitter Data
             let twitterBio = UserDefaults.standard.object(forKey: "twitterBio") as! String
-            print(twitterBio)
+            let twitterUsername = UserDefaults.standard.object(forKey: "twitterUsername") as! String
+            let twitterFollowerCount = UserDefaults.standard.object(forKey: "twitterFollowerCount") as! Int
+            let twitterFollowingCount = UserDefaults.standard.object(forKey: "twitterFollowingCount") as! Int
             
+            // Instagram Data
+            let instagramBio = UserDefaults.standard.object(forKey: "instagramBio") as! String
+            let instagramUsername = UserDefaults.standard.object(forKey: "instagramUsername") as! String
+            let instagramFollowerCount = UserDefaults.standard.object(forKey: "instagramFollowerCount") as! Int
+            let instagramFollowingCount = UserDefaults.standard.object(forKey: "instagramFollowingCount") as! Int
+            
+            // History
             let twitterFollowersHistoryDate = UserDefaults.standard.stringArray(forKey: "twitterFollowersHistoryDate") ?? [String]()
             
             let twitterFollowersHistoryFollowerCount = UserDefaults.standard.stringArray(forKey: "twitterFollowersHistoryFollowerCount") ?? [String]()
@@ -126,12 +142,12 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
             print("viewY")
             print(viewY)
             // Displaying Bios
-            if twitterBio.isEmpty {
+            if twitterUsername.isEmpty {
             
             } else {
                 // Creating second view
                 viewY = viewY + 75
-                let twitterBioView = UIView(frame: CGRect(x: 0, y: viewY, width: Int(screenSize.width), height: viewHeight))
+                let twitterBioView = UIView(frame: CGRect(x: 0, y: viewY, width: Int(screenSize.width), height: viewHeight*2))
                 twitterBioView.backgroundColor = UIColor.white
                 twitterBioView.center.x = self.view.center.x
                 self.scrollView.addSubview(twitterBioView)
@@ -141,7 +157,7 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
                 twitterBioTitle.center = CGPoint(x: 160, y: viewY)
                 twitterBioTitle.textColor = .black
                 twitterBioTitle.textAlignment = .center
-                twitterBioTitle.text = "Twitter Bio"
+                twitterBioTitle.text = twitterUsername + "(Twitter)"
                 twitterBioTitle.center.x = self.view.center.x
                 twitterBioTitle.font = twitterBioTitle.font.withSize(20)
                 self.scrollView.addSubview(twitterBioTitle)
@@ -156,40 +172,186 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
                 twitterBioLabel.textColor = .black
                 twitterBioLabel.text = twitterBio
                 self.scrollView.addSubview(twitterBioLabel)
+                
+                // Showing followers and following
+                viewY = viewY + 75
+                let twitterStatsCountLabel = UILabel(frame: CGRect(x: 0, y: 50, width: Int(screenSize.width), height: 160))
+                twitterStatsCountLabel.center = CGPoint(x: 160, y: viewY)
+                twitterStatsCountLabel.textColor = .black
+                twitterStatsCountLabel.textAlignment = .center
+                twitterStatsCountLabel.text = "Followers: " + String(twitterFollowerCount) + "  Following: " + String(twitterFollowingCount)
+                twitterStatsCountLabel.center.x = self.view.center.x
+                twitterStatsCountLabel.font = twitterStatsCountLabel.font.withSize(20)
+                self.scrollView.addSubview(twitterStatsCountLabel)
+                
+                
+                // Followers data button and view change
+                viewY = viewY + 50
+                let twitterStreamViewButton = UIButton(frame: CGRect(x: 0, y: 50, width: Int(screenSize.width)/2, height: 40))
+                twitterStreamViewButton.center = CGPoint(x: 225, y: viewY)
+                twitterStreamViewButton.backgroundColor = blueButton
+                twitterStreamViewButton.setTitle("Twitter Stream", for: .normal)
+                twitterStreamViewButton.center.x = self.view.center.x
+                twitterStreamViewButton.addTarget(self, action: #selector(self.twitterStreamAction), for: .touchUpInside)
+                
+                self.scrollView.addSubview(twitterStreamViewButton)
+                
+                viewY = viewY + 36
+                let twitterStreamViewSmallText = UILabel(frame: CGRect(x: 0, y: 50, width: Int(screenSize.width), height: 160))
+                twitterStreamViewSmallText.center = CGPoint(x: 160, y: viewY)
+                twitterStreamViewSmallText.textColor = .black
+                twitterStreamViewSmallText.textAlignment = .center
+                twitterStreamViewSmallText.text = "Showing your latest instagram post and analyzing them"
+                twitterStreamViewSmallText.center.x = self.view.center.x
+                twitterStreamViewSmallText.font = twitterStreamViewSmallText.font.withSize(12)
+                self.scrollView.addSubview(twitterStreamViewSmallText)
             }
+            
+            if instagramUsername.isEmpty {
+                
+            } else {
+                // Creating second view
+                viewY = viewY + 100
+                let instagramBioView = UIView(frame: CGRect(x: 0, y: viewY, width: Int(screenSize.width), height: viewHeight*2))
+                instagramBioView.backgroundColor = UIColor.white
+                instagramBioView.center.x = self.view.center.x
+                self.scrollView.addSubview(instagramBioView)
+                
+                viewY = viewY + 25
+                let instagramBioTitle = UILabel(frame: CGRect(x: 0, y: 50, width: Int(screenSize.width), height: 160))
+                instagramBioTitle.center = CGPoint(x: 160, y: viewY)
+                instagramBioTitle.textColor = .black
+                instagramBioTitle.textAlignment = .center
+                instagramBioTitle.text = instagramUsername + "(Instagram)"
+                instagramBioTitle.center.x = self.view.center.x
+                instagramBioTitle.font = instagramBioTitle.font.withSize(20)
+                self.scrollView.addSubview(instagramBioTitle)
+                
+                viewY = viewY + 50
+                let instagramBioLabel = UILabel(frame: CGRect(x: Int(screenSize.width)/2, y: 50, width: Int(screenSize.width - 10), height: 160))
+                instagramBioLabel.lineBreakMode = .byWordWrapping
+                instagramBioLabel.numberOfLines = 0
+                instagramBioLabel.center = CGPoint(x: 160, y: viewY)
+                instagramBioLabel.center.x = self.view.center.x
+                instagramBioLabel.textAlignment = .center
+                instagramBioLabel.textColor = .black
+                instagramBioLabel.text = instagramBio
+                self.scrollView.addSubview(instagramBioLabel)
+                
+                // Showing followers and following
+                viewY = viewY + 75
+                let instagramStatsCountLabel = UILabel(frame: CGRect(x: 0, y: 50, width: Int(screenSize.width), height: 160))
+                instagramStatsCountLabel.center = CGPoint(x: 160, y: viewY)
+                instagramStatsCountLabel.textColor = .black
+                instagramStatsCountLabel.textAlignment = .center
+                instagramStatsCountLabel.text = "Followers: " + String(instagramFollowerCount) + "  Following: " + String(instagramFollowingCount)
+                instagramStatsCountLabel.center.x = self.view.center.x
+                instagramStatsCountLabel.font = instagramStatsCountLabel.font.withSize(20)
+                self.scrollView.addSubview(instagramStatsCountLabel)
+                
+                
+                // Followers data button and view change
+                viewY = viewY + 50
+                let instagramStreamViewButton = UIButton(frame: CGRect(x: 0, y: 50, width: Int(screenSize.width)/2, height: 40))
+                instagramStreamViewButton.center = CGPoint(x: 225, y: viewY)
+                instagramStreamViewButton.backgroundColor = blueButton
+                instagramStreamViewButton.setTitle("Instagram Stream", for: .normal)
+                instagramStreamViewButton.center.x = self.view.center.x
+                instagramStreamViewButton.addTarget(self, action: #selector(self.instagramStreamAction), for: .touchUpInside)
+//
+                self.scrollView.addSubview(instagramStreamViewButton)
+                
+                viewY = viewY + 36
+                let instagramStreamViewSmallText = UILabel(frame: CGRect(x: 0, y: 50, width: Int(screenSize.width), height: 160))
+                instagramStreamViewSmallText.center = CGPoint(x: 160, y: viewY)
+                instagramStreamViewSmallText.textColor = .black
+                instagramStreamViewSmallText.textAlignment = .center
+                instagramStreamViewSmallText.text = "Showing your latest instagram post and analyzing them"
+                instagramStreamViewSmallText.center.x = self.view.center.x
+                instagramStreamViewSmallText.font = instagramStreamViewSmallText.font.withSize(12)
+                self.scrollView.addSubview(instagramStreamViewSmallText)
+            }
+            
+            // Displaying tips
+            let tipsCount = tips.count*56
+            viewY = viewY + 148
+            let tipsView = UIView(frame: CGRect(x: 0, y: viewY, width: Int(screenSize.width), height: viewHeight+tipsCount+32))
+            tipsView.backgroundColor = UIColor.white
+            tipsView.center.x = self.view.center.x
+            self.scrollView.addSubview(tipsView)
+            print(viewY)
+            
+            
+            viewY = viewY + 25
+            let tipsTitle = UILabel(frame: CGRect(x: 0, y: 50, width: Int(screenSize.width), height: 160))
+            tipsTitle.center = CGPoint(x: 160, y: viewY)
+            tipsTitle.textColor = .black
+            tipsTitle.textAlignment = .center
+            tipsTitle.text = "Main Tips"
+            tipsTitle.center.x = self.view.center.x
+            tipsTitle.font = tipsTitle.font.withSize(20)
+            self.scrollView.addSubview(tipsTitle)
+            
+            viewY = viewY + 36
+            let tipsSmallText = UILabel(frame: CGRect(x: 0, y: 50, width: Int(screenSize.width), height: 160))
+            tipsSmallText.center = CGPoint(x: 160, y: viewY)
+            tipsSmallText.textColor = .black
+            tipsSmallText.textAlignment = .center
+            tipsSmallText.text = "Showing tips for your social media accounts"
+            tipsSmallText.center.x = self.view.center.x
+            tipsSmallText.font = tipsSmallText.font.withSize(12)
+            self.scrollView.addSubview(tipsSmallText)
+            
+            viewY = viewY + 24
+            for tip in tips {
+                print(tip)
+                viewY = viewY + 60
+                // Creating label
+                let label = UILabel(frame: CGRect(x: 0, y: 40, width: screenSize.width - 10, height: 160))
+                label.lineBreakMode = .byWordWrapping
+                label.numberOfLines = 0
+                label.center = CGPoint(x: 160, y: viewY)
+                label.textAlignment = .center
+                label.center.x = self.view.center.x
+                label.textColor = .black
+                label.text = tip
+                self.scrollView.addSubview(label)
+            }
+            
+            
             // Adding graph to phone
             
             // Creating graph view
-            viewY = viewY + 100
-            let lineChartView = LineChartView(frame: CGRect(x: 0, y: viewY, width: Int(screenSize.width), height: viewHeight + 175))
-            lineChartView.backgroundColor = UIColor.white
-            lineChartView.center.x = self.view.center.x
-            viewY = viewY + viewHeight
-            
-            // Importing graph
-            let count = Int(arc4random_uniform(20) + 3)
-
-            let values = (0..<count).map { (i) -> ChartDataEntry in
-//                let val = Double(arc4random_uniform(UInt32(count)) + 3)
-                var val = 0.0
-                print(twitterFollowersHistoryFollowerCount)
-                for followers_count in twitterFollowersHistoryFollowerCount {
-                    print(twitterFollowersHistoryFollowerCount)
-                    val = Double(twitterFollowersHistoryFollowerCount[i])!
-                }
-                print("i")
-                print(i)
-                print(val)
-                return ChartDataEntry(x: Double(i), y: Double(val))
-            }
-            
-            let set1 = LineChartDataSet(values: values, label: "Followers Twitter")
-            let data = LineChartData(dataSet: set1)
-            lineChartView.data = data
-            self.scrollView.addSubview(lineChartView)
+//            viewY = viewY + 164
+//            let lineChartView = LineChartView(frame: CGRect(x: 0, y: viewY, width: Int(screenSize.width), height: viewHeight + 175))
+//            lineChartView.backgroundColor = UIColor.white
+//            lineChartView.center.x = self.view.center.x
+//            viewY = viewY + viewHeight
+//
+//            // Importing graph
+//            let count = Int(arc4random_uniform(20) + 3)
+//
+//            let values = (0..<count).map { (i) -> ChartDataEntry in
+////                let val = Double(arc4random_uniform(UInt32(count)) + 3)
+//                var val = 0.0
+//                print(twitterFollowersHistoryFollowerCount)
+//                for followers_count in twitterFollowersHistoryFollowerCount {
+//                    print(twitterFollowersHistoryFollowerCount)
+//                    val = Double(twitterFollowersHistoryFollowerCount[i])!
+//                }
+//                print("i")
+//                print(i)
+//                print(val)
+//                return ChartDataEntry(x: Double(i), y: Double(val))
+//            }
+//
+//            let set1 = LineChartDataSet(values: values, label: "Followers Twitter")
+//            let data = LineChartData(dataSet: set1)
+//            lineChartView.data = data
+//            self.scrollView.addSubview(lineChartView)
             
             // Competition View
-            viewY = viewY + 265
+            viewY = viewY + 105
             let competitionView = UIView(frame: CGRect(x: 0, y: viewY, width: Int(screenSize.width), height: viewHeight))
             competitionView.backgroundColor = UIColor.white
             competitionView.center.x = self.view.center.x
@@ -205,7 +367,7 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
                 let competitionViewButton = UIButton(frame: CGRect(x: 0, y: 50, width: Int(screenSize.width)/2, height: 40))
                 competitionViewButton.center = CGPoint(x: 225, y: viewY)
                 competitionViewButton.backgroundColor = blueButton
-                competitionViewButton.setTitle("Find Competition", for: .normal)
+                competitionViewButton.setTitle("View Competition", for: .normal)
                 competitionViewButton.center.x = self.view.center.x
                 competitionViewButton.addTarget(self, action: #selector(self.findCompetitionButtonAction), for: .touchUpInside)
                 self.scrollView.addSubview(competitionViewButton)
@@ -229,37 +391,7 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
             competitionSmallText.center.x = self.view.center.x
             competitionSmallText.font = competitionSmallText.font.withSize(12)
             self.scrollView.addSubview(competitionSmallText)
-            
-            // Followers Data
-            viewY = viewY + 123
-            let followersDataView = UIView(frame: CGRect(x: 0, y: viewY, width: Int(screenSize.width), height: viewHeight))
-            followersDataView.backgroundColor = UIColor.white
-            followersDataView.center.x = self.view.center.x
-            self.scrollView.addSubview(followersDataView)
-            
-            
-            // Followers data button and view change
-            viewY = viewY + 64
-            let followersDataViewButton = UIButton(frame: CGRect(x: 0, y: 50, width: Int(screenSize.width)/2, height: 40))
-            followersDataViewButton.center = CGPoint(x: 225, y: viewY)
-            followersDataViewButton.backgroundColor = blueButton
-            followersDataViewButton.setTitle("Get Followers", for: .normal)
-            followersDataViewButton.center.x = self.view.center.x
-            followersDataViewButton.addTarget(self, action: #selector(self.getFollowersDataButtonAction), for: .touchUpInside)
 
-            self.scrollView.addSubview(followersDataViewButton)
-            
-            
-            viewY = viewY + 36
-            let followersDataSmallText = UILabel(frame: CGRect(x: 0, y: 50, width: Int(screenSize.width), height: 160))
-            followersDataSmallText.center = CGPoint(x: 160, y: viewY)
-            followersDataSmallText.textColor = .black
-            followersDataSmallText.textAlignment = .center
-            followersDataSmallText.text = "Find out data about your followers"
-            followersDataSmallText.center.x = self.view.center.x
-            followersDataSmallText.font = followersDataSmallText.font.withSize(12)
-            self.scrollView.addSubview(followersDataSmallText)
-            
             // Website Data
             let websiteLinkCount = websiteLinks.count*24
             viewY = viewY + 148
@@ -345,8 +477,9 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
 //                }
 //            }
             // Adding scroll view to main view
-            let scrollHeight = viewY + 100
-            self.scrollView.contentSize = CGSize(width: screenSize.width, height: 2000)
+            let scrollViewHeightCGFloat = CGFloat(viewY + 100)
+
+            self.scrollView.contentSize = CGSize(width: screenSize.width, height: scrollViewHeightCGFloat)
             self.view.addSubview(self.scrollView)
             
         }
@@ -361,13 +494,15 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
         print("Button tapped")
         self.performSegue(withIdentifier: "homeToCompetitionSegue", sender: self)
     }
-    @objc func getFollowersDataButtonAction(sender: UIButton!) {
-        print("Button tapped")
-        self.performSegue(withIdentifier: "homeToFollowersDataSegue", sender: self)
-    }
     @objc func aboutButtonAction(sender: UIButton!) {
         print("Button tapped")
         self.performSegue(withIdentifier: "homeToAboutSegue", sender: self)
+    }
+    @objc func twitterStreamAction(sender: UIButton!) {
+        self.performSegue(withIdentifier: "homeToTwitterStreamSegue", sender: self)
+    }
+    @objc func instagramStreamAction(sender: UIButton!) {
+        self.performSegue(withIdentifier: "homeToInstagramStreamSegue", sender: self)
     }
     @objc func logoutButtonAction(sender: UIButton!) {
         print("Button tapped")

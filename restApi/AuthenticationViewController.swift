@@ -57,9 +57,10 @@ struct instagramPostsData: Decodable {
     let number_of_likes: Int!
     let pic_url: String!
     let picture_text: String!
+    let tips: [String]
 }
 struct statisticsData: Decodable {
-    let averageAmountOfFollowers: Int!
+    let averageAmountOfFollowers: Float!
     let instagramRecentAvgComments: Float!
     let instagramRecentAvgDescriptionLen: Float!
     let instagramRecentAvgLikes: Float!
@@ -83,6 +84,7 @@ struct twitterData: Decodable {
 struct twitterTweetData: Decodable {
     let time: String!
     let tweet: String!
+    let tips: [String]
 }
 struct userData: Decodable {
     let email: String!
@@ -107,101 +109,7 @@ struct historyListData: Decodable {
     let date: String!
     let followers_count: Int!
 }
-//struct parsedData: Decodable  {
-//    let account: accountData
-//    let competition: competitionData
-//    let tips: [String]
-//    let twitter: twitterData
-//    let website: websiteData
-//    let message: String!
-//}
-//struct accountData: Decodable {
-//    let email: String!
-//    let firstname: String!
-//    let lastname: String!
-//    let niche: String!
-//    let setup_complete: Bool!
-//}
-//struct competitionData: Decodable {
-//    let title: [String]
-//    let link: [String]
-//}
-//struct twitterData: Decodable {
-//    let followersFormated: followersFormatedData
-//    let history: twitterHistoryData
-//    let userData: userDataStruct
-//}
-//struct followersFormatedData: Decodable {
-//    let name: [String]
-//    let location: [String]
-//}
-//struct twitterHistoryData: Decodable {
-//    let followers: [twitterFollowersHistoryData]
-////    let following: [twitterFollowingHistoryData]
-//}
-//struct twitterFollowersHistoryData: Decodable {
-//    let date: String!
-//    let followers_count: Int!
-//}
-////struct twitterFollowingHistoryData: Decodable {
-////    let date: String!
-////    let following_count: Int!
-////}
-//struct userDataStruct: Decodable {
-//    let description: String!
-//    let favorite_count: Int!
-//    let followers_count: Int!
-//    let following: Bool!
-//    let friends_count: Int!
-//    let location: String!
-//    let name: String!
-//    let screen_name: String!
-//    let status: statusData
-//    let statuses_count: Int!
-//    let url: String!
-//    let verified: Bool!
-//}
-//struct statusData: Decodable {
-//    let created_at: String!
-//    let favorite_count: Int!
-//    let favorited: Bool!
-//    let id: Int!
-//    let id_str: String!
-//    let is_quote_status: Bool!
-//    let lang: String!
-//    let retweet_count: Int!
-//    let retweeted: Bool!
-//    let source: String!
-//    let text: String!
-//    let truncated: Bool!
-//}
-//struct websiteData: Decodable {
-//    let website_name: String!
-//    let website_url: String!
-//    let header_text: String!
-//    let links: [String]
-//}
-//class User{
-//    var email: String
-//    var password: String
-//    var message: String
-//    func init(parameters) -> <#return type#> {
-//        <#function body#>
-//    }
-//}
-//class UserInstagram{
-//    var bio: String
-//    var instagram_username: String
-//    var number_of_followers: String
-//    var number_of_following: String
-//    var number_of_post: String
-//    var on_desktop: String
-//    var on_mobile: String
-//    var on_web: String
-//}
-//class UserTwitter{
-//
-//}
+
 class AuthenticationViewController: UIViewController, UIScrollViewDelegate {
     
     // Elements from UI
@@ -278,204 +186,290 @@ class AuthenticationViewController: UIViewController, UIScrollViewDelegate {
         let password = passwordTextField.text
         
         if isSignIn{
-            print("jajajalllllll")
-            // User Sign In
-            
-            
-            // Defining paremeters for json post
-            let parameters = [
-                "email": email,
-                "password": password,
-                "software": "ios"
-            ]
-            
-            // Getting url of json postYY
-            guard let url = URL(string: "http://localhost:5000/signin") else { return }
-            
-            // Defining request
-            var request = URLRequest(url: url)
-            request.httpMethod = "POST"
-            request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-            guard let httpBody = try? JSONSerialization.data(withJSONObject: parameters, options: []) else {
-                return
-            }
-            request.httpBody = httpBody
-            
-            let session = URLSession.shared
-            session.dataTask(with: request) { (data, response, error) in
-                if let response = response {
-                    print(response)
-                    print("First Print Section\n")
-                }
-                
-                if let data = data {
-                    do {
-                        let json = try JSONSerialization.jsonObject(with: data, options: [])
-                        print(json)
-                        print("Second Print Section\n")
-                        let userDataReturned = try JSONDecoder().decode(parsedData.self, from: data)
-                        
-                        print(userDataReturned)
-                        
-                        
-                        // Putting data in session
-                        UserDefaults.standard.set(true, forKey: "userDataReturned")
-                        UserDefaults.standard.synchronize();
-                        
-                        print("Third Print Section\n")
-//                        let message = userDataReturned.message as! String
-                        
-                        print("Four Print Section\n")
-                        
-                        // TEst code
-                        
-                        print(data)
-                        print("YOooo")
-                        
-                        
-                        
-                        
-                        
-//                        if message == "success"{
-                            let defaults = UserDefaults.standard
-                            
-                            // Saving user instagram and twitter data in variable
-                            //                            let instagramDataReturned = userDataReturned.returnedInfoInstagram.bio as! String
-                            //                            print(instagramDataReturned)
-                            print("Six Print Section\n")
-                            
-                            // Saving returned user data in variable
-                            let firstname = userDataReturned.account.firstname as! String
-                            let lastname = userDataReturned.account.lastname as! String
-                            let name = firstname + " " + lastname
-                            let competitionLink = userDataReturned.competition.link
-                            let competitionTitle = userDataReturned.competition.title
-//                            let twitterFollowersName = userDataReturned.twitter.followersFormated.name
-//                            let twitterFollowersLocation = userDataReturned.twitter.followersFormated.location
-//                            let totalNumberOfFollowers = userDataReturned.twitter.userData.followers_count as! Int
-                            let tips = userDataReturned.tips
-                            let bio = userDataReturned.twitter.description
-                            let twitterFollowersHistory = userDataReturned.twitter.history.followers
-                            let websiteLinks = userDataReturned.website.links
-                            let websiteName = userDataReturned.website.website_name
-                            let websiteUrl = userDataReturned.website.website_url
-                            
-                            // Putting twitter follower history in list
-                            var twitterFollowersHistoryDate = [String]()
-                            var twitterFollowersHistoryFollowerCount = [Int]()
-                            
-                            // Formatting twitter history data with for loop
-//                            for followerDay in twitterFollowersHistory{
-//                                // Date
-//                                var followerDate = followerDay.date as! String
-//                                twitterFollowersHistoryDate.append(followerDate)
-//                                // Follower number
-//                                var followerNumber = followerDay.followers_count as! Int
-//                                twitterFollowersHistoryFollowerCount.append(followerNumber)
-//                            }
-//
-                            print(twitterFollowersHistoryDate)
-                            print(twitterFollowersHistoryFollowerCount)
-
-//                            print(twitterFollowersHistory[0].date)
-                            print("sec \n\n\n")
-//                            print(twitterFollowersHistory[1])
-//                            print(twitterFollowersHistoryDate)
-                            
-                            // Putting specific data in session
-                            defaults.set(bio, forKey:"twitterBio");
-                            defaults.synchronize();
-                            defaults.set(name, forKey:"name");
-                            defaults.synchronize();
-                            defaults.set(competitionLink, forKey:"competitionLink");
-                            defaults.synchronize();
-                            defaults.set(competitionTitle, forKey:"competitionTitle");
-                            defaults.synchronize();
-//                            defaults.set(twitterFollowersName, forKey:"twitterFollowersName");
-//                            defaults.synchronize();
-//                            defaults.set(twitterFollowersLocation, forKey:"twitterFollowersLocation");
-//                            defaults.synchronize();
-//                            defaults.set(totalNumberOfFollowers, forKey:"totalNumberOfFollowers");
-//                            defaults.synchronize();
-                            defaults.set(tips, forKey:"tips");
-                            defaults.synchronize();
-                            defaults.set(websiteLinks, forKey:"websiteLinks");
-                            defaults.synchronize();
-                            defaults.set(websiteName, forKey:"websiteName");
-                            defaults.synchronize();
-                            defaults.set(websiteUrl, forKey:"websiteUrl");
-                            defaults.synchronize();
-                            defaults.set(twitterFollowersHistoryDate, forKey:"twitterFollowersHistoryDate");
-                            defaults.synchronize();
-                            defaults.set(twitterFollowersHistoryFollowerCount, forKey:"twitterFollowersHistoryFollowerCount");
-                            defaults.synchronize();
-                            print("aaaa")
-                            // Changing View
-                            self.performSegue(withIdentifier: "loggedInSegue", sender: self)
-                            
-//                        } else {
-//                            print("failed")
-//                        }
-                        //
-                        
-                        
-                    } catch {
-                        print(error)
-                    }
-                }
-                //                do{
-                //                    let userData = JSONDecoder().decode(userData.self, from: data)
-                //                    print(userData)
-                //                }
-                
-                }.resume()
+            self.callApi(email: email!, password: password!)
         } else {
-            // User Registration
-            print("jajaja")
-            
-            // Defining paremeters for json post
-            let parameters = [
-                "firstname": firstname,
-                "lastname": lastname,
-                "email": email,
-                "password": password,
-                "software": "ios"
-                ]
-            
-            // Getting url of json post
-            guard let url = URL(string: "http://localhost:5000/create-user") else { return }
-            
-            // Defining request
-            var request = URLRequest(url: url)
-            request.httpMethod = "POST"
-            request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-            guard let httpBody = try? JSONSerialization.data(withJSONObject: parameters, options: []) else {
-                return
-            }
-            request.httpBody = httpBody
-            
-            // Creating Session
-            let session = URLSession.shared
-            session.dataTask(with: request) { (data, response, error) in
-                if let response = response {
-                    print(response)
-                }
-                
-                if let data = data {
-                    do {
-                        print(data)
-                        let json = try JSONSerialization.jsonObject(with: data, options: [])
-                        print(json)
-                        print("aaaa")
-                        self.showLogin()
-                        // Storing data in session
-                        
-                    } catch {
-                        print(error)
-                    }
-                }
-                
-                }.resume()
+            self.createAccount(firstname: firstname!, lastname: lastname!, email: email!, password: password!)
         }
+    }
+    
+    // Calling api
+    func callApi(email: String, password: String) {
+        print("jajajalllllll")
+        // User Sign In
+        
+        
+        // Defining paremeters for json post
+        let parameters = [
+            "email": email,
+            "password": password,
+            "software": "ios"
+        ]
+        
+        // Getting url of json postYY
+        guard let url = URL(string: "https://www.iblinkco.com/signin") else { return }
+        
+        // Defining request
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        guard let httpBody = try? JSONSerialization.data(withJSONObject: parameters, options: []) else {
+            return
+        }
+        request.httpBody = httpBody
+        
+        let session = URLSession.shared
+        session.dataTask(with: request) { (data, response, error) in
+            if let response = response {
+                print(response)
+                print("First Print Section\n")
+            }
+            
+            if let data = data {
+                do {
+                    let json = try JSONSerialization.jsonObject(with: data, options: [])
+//                    print(json)
+//                    print("Second Print Section\n")
+                    let userDataReturned = try JSONDecoder().decode(parsedData.self, from: data)
+//
+//                    print(userDataReturned)
+                    
+                    
+                    // Putting data in session
+                    UserDefaults.standard.set(true, forKey: "userDataReturned")
+                    UserDefaults.standard.synchronize();
+                    
+//                    print("Third Print Section\n")
+//                    //                        let message = userDataReturned.message as! String
+//
+//                    print("Four Print Section\n")
+//
+//                    // TEst code
+//
+//                    print(data)
+//                    print("YOooo")
+                    
+                    
+                    
+                    
+                    
+                    //                        if message == "success"{
+                    let defaults = UserDefaults.standard
+                    
+                    // Saving user instagram and twitter data in variable
+                    //                            let instagramDataReturned = userDataReturned.returnedInfoInstagram.bio as! String
+                    //                            print(instagramDataReturned)
+//                    print("Six Print Section\n")
+                    
+                    // Saving returned user data in variable
+                    let firstname = userDataReturned.account.firstname as! String
+                    let lastname = userDataReturned.account.lastname as! String
+                    let name = firstname + " " + lastname
+                    let competitionLink = userDataReturned.competition.link
+                    let competitionTitle = userDataReturned.competition.title
+                    //                            let twitterFollowersName = userDataReturned.twitter.followersFormated.name
+                    //                            let twitterFollowersLocation = userDataReturned.twitter.followersFormated.location
+                    //                            let totalNumberOfFollowers = userDataReturned.twitter.userData.followers_count as! Int
+                    // Getting total follower count
+                    var totalNumberOfFollowers = 0
+                    let twitterNumberOfFollowers = userDataReturned.twitter.followers as! Int
+                    totalNumberOfFollowers = totalNumberOfFollowers + twitterNumberOfFollowers
+                    let instagramNumberOfFollowers = userDataReturned.instagram.edge_followed_by as! Int
+                    totalNumberOfFollowers = twitterNumberOfFollowers + instagramNumberOfFollowers
+                    
+                    let tips = userDataReturned.tips
+                    
+                    // Twitter Data
+                    let twitterBio = userDataReturned.twitter.description
+                    let twitterFollowersHistory = userDataReturned.twitter.history.followers
+                    let twitterUsername = userDataReturned.twitter.username
+                    let twitterFollowerCount = userDataReturned.twitter.followers
+                    let twitterFollowingCount = userDataReturned.twitter.following
+                    let tweets = userDataReturned.twitter.tweets
+                    
+                    // Website Data
+                    let websiteLinks = userDataReturned.website.links
+                    let websiteName = userDataReturned.website.website_name
+                    let websiteUrl = userDataReturned.website.website_url
+                    
+                    // Putting twitter follower history in list
+                    var twitterFollowersHistoryDate = [String]()
+                    var twitterFollowersHistoryFollowerCount = [Int]()
+                    
+                    
+                    // Instagram
+                    let instagramBio = userDataReturned.instagram.biography
+                    let instagramUsername = userDataReturned.instagram.username
+                    let instagramFollowerCount = userDataReturned.instagram.edge_followed_by
+                    let instagramFollowingCount = userDataReturned.instagram.edge_follow
+                    let instagramPosts = userDataReturned.instagram.instagramPosts
+                    
+                    var instagramPostsCaption = [String]()
+                    var instagramPostsNumberOfComments = [Int]()
+                    var instagramPostsNumberOfLikes =  [Int]()
+                    var instagramPostsPicUrl = [String]()
+                    var instagramPostsPictureText = [String]()
+//                    var instagramPostsTips = [String: Array<String>]()
+                    var instagramPostsTips = [[String]]()
+                    var counter = 0
+                    for post in instagramPosts {
+                        instagramPostsCaption.append(post.caption)
+                        instagramPostsNumberOfComments.append(post.number_of_comments)
+                        instagramPostsNumberOfLikes.append(post.number_of_likes)
+                        instagramPostsPicUrl.append(post.pic_url)
+                        instagramPostsPictureText.append(post.picture_text)
+                        instagramPostsTips.append(post.tips)
+                    }
+                    var tweetsText = [String]()
+                    var tweetsTime = [String]()
+                    var tweetsTips = [[String]]()
+                    for tweet in tweets {
+                        tweetsText.append(tweet.tweet)
+                        tweetsTime.append(tweet.time)
+                        tweetsTips.append(tweet.tips)
+                    }
+                    //                            print(twitterFollowersHistory[0].date)
+                    //                            print(twitterFollowersHistory[1])
+                    //                            print(twitterFollowersHistoryDate)
+                    
+                    // Putting specific data in session
+                    print("\n\n\n\n\n\n\n\nefnwigrbue")
+                    
+                    // Instagram data
+                    defaults.set(instagramFollowerCount, forKey: "instagramFollowerCount")
+                    defaults.synchronize()
+                    defaults.set(instagramFollowingCount, forKey: "instagramFollowingCount")
+                    defaults.synchronize()
+                    defaults.set(instagramUsername, forKey:"instagramUsername")
+                    defaults.synchronize()
+                    defaults.set(instagramBio, forKey:"instagramBio");
+                    defaults.synchronize();
+                    
+                    // Instagram posts
+                    defaults.setValue(instagramPostsCaption, forKey:"instagramPostsCaption");
+                    defaults.synchronize();
+                    defaults.setValue(instagramPostsNumberOfComments, forKey:"instagramPostsNumberOfComments");
+                    defaults.synchronize();
+                    defaults.setValue(instagramPostsNumberOfLikes, forKey:"instagramPostsNumberOfLikes");
+                    defaults.synchronize();
+                    defaults.setValue(instagramPostsPicUrl, forKey:"instagramPostsPicUrl");
+                    defaults.synchronize();
+                    defaults.setValue(instagramPostsPictureText, forKey:"instagramPostsPictureText");
+                    defaults.synchronize();
+                    print(instagramPostsTips)
+                    defaults.setValue(instagramPostsTips, forKey:"instagramPostsTips");
+                    defaults.synchronize();
+                    
+                    
+                    
+                    // Twitter data
+                    defaults.set(twitterUsername, forKey:"twitterUsername")
+                    defaults.synchronize()
+                    defaults.set(twitterFollowerCount, forKey:"twitterFollowerCount")
+                    defaults.synchronize()
+                    defaults.set(twitterFollowingCount, forKey: "twitterFollowingCount")
+                    defaults.synchronize()
+                    defaults.set(twitterBio, forKey:"twitterBio");
+                    defaults.synchronize();
+                        
+                    // Tweets
+                    defaults.set(tweetsText, forKey: "tweetsText")
+                    defaults.synchronize();
+                    defaults.set(tweetsTime, forKey: "tweetsTime")
+                    defaults.synchronize();
+                    defaults.set(tweetsTips, forKey: "tweetsTips")
+                    defaults.synchronize();
+                        
+                    defaults.set(totalNumberOfFollowers, forKey:"totalNumberOfFollowers")
+                    defaults.synchronize()
+                    defaults.set(name, forKey:"name");
+                    defaults.synchronize();
+                    defaults.set(competitionLink, forKey:"competitionLink");
+                    defaults.synchronize();
+                    defaults.set(competitionTitle, forKey:"competitionTitle");
+                    defaults.synchronize();
+                    defaults.set(tips, forKey:"tips");
+                    defaults.synchronize();
+                    defaults.set(websiteLinks, forKey:"websiteLinks");
+                    defaults.synchronize();
+                    defaults.set(websiteName, forKey:"websiteName");
+                    defaults.synchronize();
+                    defaults.set(websiteUrl, forKey:"websiteUrl");
+                    defaults.synchronize();
+                    defaults.set(twitterFollowersHistoryDate, forKey:"twitterFollowersHistoryDate");
+                    defaults.synchronize();
+                    defaults.set(twitterFollowersHistoryFollowerCount, forKey:"twitterFollowersHistoryFollowerCount");
+                    defaults.synchronize();
+                    print("aaaa")
+                    // Changing View
+                    self.performSegue(withIdentifier: "loggedInSegue", sender: self)
+                    
+                    //                        } else {
+                    //                            print("failed")
+                    //                        }
+                    //
+                    
+                    
+                } catch {
+                    print(error)
+                }
+            }
+            //                do{
+            //                    let userData = JSONDecoder().decode(userData.self, from: data)
+            //                    print(userData)
+            //                }
+            
+            }.resume()
+    }
+    
+    
+    // Creating account
+    func createAccount(firstname: String, lastname: String, email: String, password: String) {
+        // User Registration
+        print("jajaja")
+        
+        // Defining paremeters for json post
+        let parameters = [
+            "firstname": firstname,
+            "lastname": lastname,
+            "email": email,
+            "password": password,
+            "software": "ios"
+        ]
+        
+        // Getting url of json post
+        guard let url = URL(string: "https://www.iblinkco.com/create-user") else { return }
+        
+        // Defining request
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        guard let httpBody = try? JSONSerialization.data(withJSONObject: parameters, options: []) else {
+            return
+        }
+        request.httpBody = httpBody
+        
+        // Creating Session
+        let session = URLSession.shared
+        session.dataTask(with: request) { (data, response, error) in
+            if let response = response {
+                print(response)
+            }
+            
+            if let data = data {
+                do {
+                    print(data)
+                    let json = try JSONSerialization.jsonObject(with: data, options: [])
+                    print(json)
+                    print("aaaa")
+                    self.showLogin()
+                    // Storing data in session
+                    
+                } catch {
+                    print(error)
+                }
+            }
+            
+            }.resume()
+
     }
 }

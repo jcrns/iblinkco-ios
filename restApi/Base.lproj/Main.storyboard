@@ -144,32 +144,33 @@
                     </view>
                     <connections>
                         <segue destination="scZ-od-tCk" kind="show" identifier="homeToCompetitionSegue" customClass="swipeFromRight" customModule="restApi" customModuleProvider="target" id="dBc-ee-Jvj"/>
-                        <segue destination="Rvh-3r-jlm" kind="show" identifier="homeToFollowersDataSegue" customClass="swipeFromRight" customModule="restApi" customModuleProvider="target" id="cTN-CZ-IjM"/>
                         <segue destination="cjw-uU-tkZ" kind="show" identifier="homeToAboutSegue" customClass="swipeFromRight" customModule="restApi" customModuleProvider="target" id="1rm-Gb-c1B"/>
                         <segue destination="BYZ-38-t0r" kind="show" identifier="homeToAuthentication" customClass="swipeFromLeft" customModule="restApi" customModuleProvider="target" id="9iw-XP-L09"/>
+                        <segue destination="p3Q-0W-pJc" kind="show" identifier="homeToInstagramStreamSegue" customClass="swipeFromRight" customModule="restApi" customModuleProvider="target" id="N7X-X8-yPA"/>
+                        <segue destination="CMQ-3L-OrQ" kind="show" identifier="homeToTwitterStreamSegue" customClass="swipeFromRight" customModule="restApi" customModuleProvider="target" id="cLH-6l-2I8"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sHp-Lq-IaC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="837.60000000000002" y="133.5832083958021"/>
         </scene>
-        <!--Followers Data View Controller-->
-        <scene sceneID="MSy-uF-BSn">
+        <!--Instagram Stream View Controller-->
+        <scene sceneID="m7J-me-dLG">
             <objects>
-                <viewController id="Rvh-3r-jlm" customClass="FollowersDataViewController" customModule="restApi" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="zXO-XI-bof">
+                <viewController id="p3Q-0W-pJc" customClass="InstagramStreamViewController" customModule="restApi" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="iIg-4V-hpM">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <viewLayoutGuide key="safeArea" id="VRD-av-ZIo"/>
+                        <viewLayoutGuide key="safeArea" id="3gL-hd-2IF"/>
                     </view>
                     <connections>
-                        <segue destination="PuM-pz-ftA" kind="show" identifier="followersDataToHomeSegue" customClass="swipeFromLeft" customModule="restApi" customModuleProvider="target" id="6Du-bG-tJ5"/>
+                        <segue destination="PuM-pz-ftA" kind="show" identifier="instagramStreamToHomeSegue" customClass="swipeFromLeft" customModule="restApi" customModuleProvider="target" id="4eq-0F-J2s"/>
                     </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="lIW-JY-S5H" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Vdg-lc-K2v" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="838" y="880"/>
+            <point key="canvasLocation" x="68" y="918"/>
         </scene>
         <!--Competition View Controller-->
         <scene sceneID="Rjw-YC-dTT">
@@ -188,6 +189,24 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="r0p-Gx-emE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1606" y="134"/>
+        </scene>
+        <!--Twitter Stream View Controller-->
+        <scene sceneID="W9Q-zv-elT">
+            <objects>
+                <viewController id="CMQ-3L-OrQ" customClass="TwitterStreamViewController" customModule="restApi" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="OF6-Kn-8Gh">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="leT-pU-fAG"/>
+                    </view>
+                    <connections>
+                        <segue destination="PuM-pz-ftA" kind="show" identifier="twitterStreamToHomeSegue" customClass="swipeFromLeft" customModule="restApi" customModuleProvider="target" id="YuB-6d-Sai"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="13f-NC-U60" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1606" y="900"/>
         </scene>
     </scenes>
     <resources>
