@@ -186,7 +186,14 @@ class AuthenticationViewController: UIViewController, UIScrollViewDelegate {
         let password = passwordTextField.text
         
         if isSignIn{
+            // Syncing user requirements
+            UserDefaults.standard.setValue(email, forKey:"email");
+            UserDefaults.standard.synchronize();
+            UserDefaults.standard.setValue(password, forKey:"password");
+            UserDefaults.standard.synchronize();
             self.callApi(email: email!, password: password!)
+            // Changing View
+            self.performSegue(withIdentifier: "loggedInSegue", sender: self)
         } else {
             self.createAccount(firstname: firstname!, lastname: lastname!, email: email!, password: password!)
         }
@@ -400,8 +407,6 @@ class AuthenticationViewController: UIViewController, UIScrollViewDelegate {
                     defaults.set(twitterFollowersHistoryFollowerCount, forKey:"twitterFollowersHistoryFollowerCount");
                     defaults.synchronize();
                     print("aaaa")
-                    // Changing View
-                    self.performSegue(withIdentifier: "loggedInSegue", sender: self)
                     
                     //                        } else {
                     //                            print("failed")

@@ -18,9 +18,19 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
     // we set a variable to hold the contentOffSet before scroll view scrolls
     var lastContentOffset: CGFloat = 0
     
+    // Refresh control
+
+    lazy var refreshControlHome: UIRefreshControl = {
+        let refreshControl = UIRefreshControl()
+        refreshControl.tintColor = .gray
+        refreshControl.addTarget(self, action: #selector(self.refreshPage), for: .valueChanged)
+        return refreshControl
+    }()
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         // Putting all data in function to run at the same time
         DispatchQueue.main.async {
             
@@ -80,17 +90,14 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
             
             // Getting Screensize
             let screenSize: CGRect = UIScreen.main.bounds
-            
-            // Pull to refresh
-            var refreshControl = UIRefreshControl()
-            refreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh")
-            refreshControl.addTarget(self, action: #selector(self.refreshHomeView), for: UIControl.Event.valueChanged)
+
 //            self.scrollView.addSubview(refreshControl)
             print("refreshing")
 //            refreshControl.endRefreshing()
             print("refreshed")
             let blackColor : UIColor = UIColor.black
             self.scrollView = UIScrollView(frame: CGRect(x: 0, y: 0, width: screenSize.width, height: screenSize.height))
+            self.scrollView.refreshControl = self.refreshControlHome
             
             // Creating needed colors
             let blueButton = UIColor(red: 30/255.0, green: 144/255.0, blue: 255/255.0, alpha: 1.0)
@@ -141,17 +148,31 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
             
             print("viewY")
             print(viewY)
+
             // Displaying Bios
             if twitterUsername.isEmpty {
-            
+                // Creating twitter view
+                viewY = viewY + 75
+                let instagramView = UIView(frame: CGRect(x: 0, y: viewY, width: Int(screenSize.width), height: viewHeight))
+                instagramView.backgroundColor = UIColor.white
+                instagramView.center.x = self.view.center.x
+                self.scrollView.addSubview(instagramView)
+                
+                viewY = viewY + 75
+                let instagramConnectTextBox = UITextField(frame: CGRect(x: 0, y: 50, width: Int(screenSize.width)/2, height: 40))
+                instagramConnectTextBox.layer.borderColor = blackColor.cgColor
+                instagramConnectTextBox.center = CGPoint(x: 225, y: viewY)
+                instagramConnectTextBox.center.x = self.view.center.x
+                instagramConnectTextBox.placeholder = "Connect Twitter"
+                self.scrollView.addSubview(instagramConnectTextBox)
             } else {
-                // Creating second view
+                // Creating twitter view
                 viewY = viewY + 75
                 let twitterBioView = UIView(frame: CGRect(x: 0, y: viewY, width: Int(screenSize.width), height: viewHeight*2))
                 twitterBioView.backgroundColor = UIColor.white
                 twitterBioView.center.x = self.view.center.x
                 self.scrollView.addSubview(twitterBioView)
-
+                
                 viewY = viewY + 25
                 let twitterBioTitle = UILabel(frame: CGRect(x: 0, y: 50, width: Int(screenSize.width), height: 160))
                 twitterBioTitle.center = CGPoint(x: 160, y: viewY)
@@ -208,9 +229,21 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
             }
             
             if instagramUsername.isEmpty {
+                viewY = viewY + 100
+                let instagramBioView = UIView(frame: CGRect(x: 0, y: viewY, width: Int(screenSize.width), height: viewHeight))
+                instagramBioView.backgroundColor = UIColor.white
+                instagramBioView.center.x = self.view.center.x
+                self.scrollView.addSubview(instagramBioView)
                 
+                viewY = viewY + 25
+                let instagramConnectTextBox = UITextField(frame: CGRect(x: 0, y: 50, width: Int(screenSize.width)/2, height: 40))
+                instagramConnectTextBox.layer.borderColor = blackColor.cgColor
+                instagramConnectTextBox.center = CGPoint(x: 225, y: viewY)
+                instagramConnectTextBox.center.x = self.view.center.x
+                instagramConnectTextBox.placeholder = "Connect Instagram"
+                self.scrollView.addSubview(instagramConnectTextBox)
             } else {
-                // Creating second view
+                // Creating instagram view
                 viewY = viewY + 100
                 let instagramBioView = UIView(frame: CGRect(x: 0, y: viewY, width: Int(screenSize.width), height: viewHeight*2))
                 instagramBioView.backgroundColor = UIColor.white
@@ -512,6 +545,20 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
         UserDefaults.standard.synchronize()
         
         self.performSegue(withIdentifier: "homeToAuthentication", sender: self)
+    }
+    
+    @objc func refreshPage(){
+        print("ekfbeigkrtdbgigk")
+        let email = UserDefaults.standard.object(forKey: "email") as! String
+        let password = UserDefaults.standard.object(forKey: "password") as! String
+        print(email)
+        print(password)
+        AuthenticationViewController().callApi(email: email, password: password)
+        print("ppdergwrbrwg")
+        DispatchQueue.main.async{
+            self.view.setNeedsLayout()
+        }
+        refreshControlHome.endRefreshing()
     }
 
     /*
