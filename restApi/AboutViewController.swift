@@ -16,7 +16,7 @@ class AboutViewController: UIViewController {
         let screenSize: CGRect = UIScreen.main.bounds
         
         // About title
-        var viewY = 48
+        var viewY = 148
         let aboutTitleTextLabel = UILabel(frame: CGRect(x: Int(screenSize.width)/2, y: 50, width: Int(screenSize.width - 10), height: 160))
         aboutTitleTextLabel.lineBreakMode = .byWordWrapping
         aboutTitleTextLabel.numberOfLines = 0
@@ -56,7 +56,7 @@ class AboutViewController: UIViewController {
         
         // Background text
         viewY = viewY + 164
-        let backgroundStoryTextLabel = UILabel(frame: CGRect(x: Int(screenSize.width)/2, y: 50, width: Int(screenSize.width - 10), height: 160))
+        let backgroundStoryTextLabel = UILabel(frame: CGRect(x: Int(screenSize.width)/2, y: 50, width: Int(screenSize.width - 10), height: 200))
         backgroundStoryTextLabel.lineBreakMode = .byWordWrapping
         backgroundStoryTextLabel.numberOfLines = 0
         backgroundStoryTextLabel.center = CGPoint(x: 160, y: viewY)
@@ -68,14 +68,40 @@ class AboutViewController: UIViewController {
         self.view.addSubview(backgroundStoryTextLabel)
         
         // Recognizing swipe right gesture
-        let aboutSwipeRightGesture = UISwipeGestureRecognizer(target: self, action: #selector(self.aboutToHomeSegueFunction))
+        let aboutSwipeRightGesture = UISwipeGestureRecognizer(target: self, action: #selector(self.aboutToStreamSelectAndTipsSegueGestureFunction))
         aboutSwipeRightGesture.direction = UISwipeGestureRecognizer.Direction.right
         self.view.addGestureRecognizer(aboutSwipeRightGesture)
+        
+        
+        // Creating bottom docked nav
+        let homeBottomDockedNav = UIView(frame: CGRect(x: 0, y: Int(screenSize.height - 75), width: Int(screenSize.width), height: 75))
+        homeBottomDockedNav.backgroundColor = .white
+        self.view.addSubview(homeBottomDockedNav)
+        
+        let navItemX = screenSize.width/4
+        
+        // Dock Images
+        let homeImageBottomNavImageButton = UIButton(frame: CGRect(x: Int(navItemX - 75), y: Int(screenSize.height - 75), width:50, height: 50))
+        homeImageBottomNavImageButton.setImage(UIImage(named: "icons8-home-50.png"), for: .normal)
+        homeImageBottomNavImageButton.addTarget(self, action: #selector(self.aboutToStreamSelectAndTipsSegueGestureFunction), for: .touchUpInside)
+        self.view.addSubview(homeImageBottomNavImageButton)
+        
+        let tipsImageBottomNavImageButton = UIButton(frame: CGRect(x: Int(navItemX*2 - 75), y: Int(screenSize.height - 75), width:50, height: 50))
+        tipsImageBottomNavImageButton.setImage(UIImage(named: "icons8-sheet-50.png"), for: .normal)
+        self.view.addSubview(tipsImageBottomNavImageButton)
+        
+        let socialMediaImageBottomNavImageButton = UIButton(frame: CGRect(x: Int(navItemX*3 - 75), y: Int(screenSize.height - 75), width:50, height: 50))
+        socialMediaImageBottomNavImageButton.setImage(UIImage(named: "icons8-news-feed-50.png"), for: .normal)
+        self.view.addSubview(socialMediaImageBottomNavImageButton)
+        
+        let infoImageBottomNavImageButton = UIButton(frame: CGRect(x: Int(navItemX*4 - 75), y: Int(screenSize.height - 75), width:50, height: 50))
+        infoImageBottomNavImageButton.setImage(UIImage(named: "icons8-info-filled-50.png"), for: .normal)
+        self.view.addSubview(infoImageBottomNavImageButton)
+
     }
-    @objc func aboutToHomeSegueFunction(fromGesture gesture: UISwipeGestureRecognizer) {
-        self.performSegue(withIdentifier: "aboutToHomeSegue", sender: self)
+    @objc func aboutToStreamSelectAndTipsSegueGestureFunction(fromGesture gesture: UISwipeGestureRecognizer) {
+        self.performSegue(withIdentifier: "aboutToStreamSelectAndTipsSegue", sender: self)
     }
-    
 
     /*
     // MARK: - Navigation

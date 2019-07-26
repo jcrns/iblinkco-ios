@@ -18,7 +18,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="iblinkcompany@gmail.com" borderStyle="roundedRect" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="GWj-MP-KgO">
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="jaydencummings1000@gmail.com" borderStyle="roundedRect" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="GWj-MP-KgO">
                                 <rect key="frame" x="87" y="300" width="201" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="201" id="4gd-az-hGu"/>
@@ -125,7 +125,7 @@
                         <viewLayoutGuide key="safeArea" id="5z0-1c-Sxj"/>
                     </view>
                     <connections>
-                        <segue destination="PuM-pz-ftA" kind="show" identifier="aboutToHomeSegue" customClass="swipeFromLeft" customModule="restApi" customModuleProvider="target" id="W9i-HA-DtS"/>
+                        <segue destination="87B-pd-urv" kind="show" identifier="aboutToStreamSelectAndTipsSegue" customClass="swipeFromLeft" customModule="restApi" customModuleProvider="target" id="ZeZ-hh-CO8"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Nkg-mG-0bT" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -148,6 +148,7 @@
                         <segue destination="BYZ-38-t0r" kind="show" identifier="homeToAuthentication" customClass="swipeFromLeft" customModule="restApi" customModuleProvider="target" id="9iw-XP-L09"/>
                         <segue destination="p3Q-0W-pJc" kind="show" identifier="homeToInstagramStreamSegue" customClass="swipeFromRight" customModule="restApi" customModuleProvider="target" id="N7X-X8-yPA"/>
                         <segue destination="CMQ-3L-OrQ" kind="show" identifier="homeToTwitterStreamSegue" customClass="swipeFromRight" customModule="restApi" customModuleProvider="target" id="cLH-6l-2I8"/>
+                        <segue destination="z3M-Qo-ZVt" kind="show" identifier="homeToCompetitionAndWebsiteSegue" customClass="swipeFromRight" customModule="restApi" customModuleProvider="target" id="gfc-nf-p4p"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sHp-Lq-IaC" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -190,6 +191,44 @@
             </objects>
             <point key="canvasLocation" x="1606" y="134"/>
         </scene>
+        <!--Competition And Website View Controller-->
+        <scene sceneID="icM-CJ-ZVn">
+            <objects>
+                <viewController id="z3M-Qo-ZVt" customClass="CompetitionAndWebsiteViewController" customModule="restApi" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="n1r-g1-y6M">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="F85-7t-bc5"/>
+                    </view>
+                    <connections>
+                        <segue destination="PuM-pz-ftA" kind="show" identifier="competitionAndWebsiteToHomeSegue" customClass="swipeFromLeft" customModule="restApi" customModuleProvider="target" id="ild-Gz-DNE"/>
+                        <segue destination="87B-pd-urv" kind="show" identifier="competitionAndWebsiteToStreamSelectAndTipsSegue" customClass="swipeFromRight" customModule="restApi" customModuleProvider="target" id="YMW-0X-kJM"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="YNT-vm-0nM" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="854" y="910"/>
+        </scene>
+        <!--Stream Select And Tips View Controller-->
+        <scene sceneID="Ow6-SW-dxZ">
+            <objects>
+                <viewController id="87B-pd-urv" customClass="StreamSelectAndTipsViewController" customModule="restApi" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="b4u-Jv-7uc">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="upb-Ym-LLi"/>
+                    </view>
+                    <connections>
+                        <segue destination="z3M-Qo-ZVt" kind="show" identifier="streamSelectAndTipsToCompetitionAndWebsiteSegue" customClass="swipeFromLeft" customModule="restApi" customModuleProvider="target" id="Wk6-cW-UK3"/>
+                        <segue destination="cjw-uU-tkZ" kind="show" identifier="streamSelectAndTipsToAboutSegue" customClass="swipeFromRight" customModule="restApi" customModuleProvider="target" id="b8R-KD-374"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="sp3-vY-9pu" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="838" y="1660"/>
+        </scene>
         <!--Twitter Stream View Controller-->
         <scene sceneID="W9Q-zv-elT">
             <objects>
@@ -213,6 +252,9 @@
         <image name="headerlogowebsite" width="120.23999786376953" height="44.159999847412109"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="YMW-0X-kJM"/>
+        <segue reference="Wk6-cW-UK3"/>
         <segue reference="2xD-o6-zuN"/>
+        <segue reference="b8R-KD-374"/>
     </inferredMetricsTieBreakers>
 </document>

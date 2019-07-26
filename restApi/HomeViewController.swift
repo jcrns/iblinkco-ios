@@ -46,6 +46,12 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
                 debugPrint("Image not available")
             }
             
+            // Recognizing swipe right gesture
+            let aboutSwipeRightGesture = UISwipeGestureRecognizer(target: self, action: #selector(self.homeToCompetitionAndWebsiteGestureFunction))
+            aboutSwipeRightGesture.direction = UISwipeGestureRecognizer.Direction.left
+            self.view.addGestureRecognizer(aboutSwipeRightGesture)
+            
+            
             // Getting data from auth
             let name = UserDefaults.standard.object(forKey: "name") as! String
             print(name)
@@ -96,7 +102,7 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
 //            refreshControl.endRefreshing()
             print("refreshed")
             let blackColor : UIColor = UIColor.black
-            self.scrollView = UIScrollView(frame: CGRect(x: 0, y: 0, width: screenSize.width, height: screenSize.height))
+            self.scrollView = UIScrollView(frame: CGRect(x: 0, y: 0, width: screenSize.width, height: screenSize.height - 75))
             self.scrollView.refreshControl = self.refreshControlHome
             
             // Creating needed colors
@@ -151,20 +157,7 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
 
             // Displaying Bios
             if twitterUsername.isEmpty {
-                // Creating twitter view
-                viewY = viewY + 75
-                let instagramView = UIView(frame: CGRect(x: 0, y: viewY, width: Int(screenSize.width), height: viewHeight))
-                instagramView.backgroundColor = UIColor.white
-                instagramView.center.x = self.view.center.x
-                self.scrollView.addSubview(instagramView)
-                
-                viewY = viewY + 75
-                let instagramConnectTextBox = UITextField(frame: CGRect(x: 0, y: 50, width: Int(screenSize.width)/2, height: 40))
-                instagramConnectTextBox.layer.borderColor = blackColor.cgColor
-                instagramConnectTextBox.center = CGPoint(x: 225, y: viewY)
-                instagramConnectTextBox.center.x = self.view.center.x
-                instagramConnectTextBox.placeholder = "Connect Twitter"
-                self.scrollView.addSubview(instagramConnectTextBox)
+
             } else {
                 // Creating twitter view
                 viewY = viewY + 75
@@ -229,19 +222,7 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
             }
             
             if instagramUsername.isEmpty {
-                viewY = viewY + 100
-                let instagramBioView = UIView(frame: CGRect(x: 0, y: viewY, width: Int(screenSize.width), height: viewHeight))
-                instagramBioView.backgroundColor = UIColor.white
-                instagramBioView.center.x = self.view.center.x
-                self.scrollView.addSubview(instagramBioView)
-                
-                viewY = viewY + 25
-                let instagramConnectTextBox = UITextField(frame: CGRect(x: 0, y: 50, width: Int(screenSize.width)/2, height: 40))
-                instagramConnectTextBox.layer.borderColor = blackColor.cgColor
-                instagramConnectTextBox.center = CGPoint(x: 225, y: viewY)
-                instagramConnectTextBox.center.x = self.view.center.x
-                instagramConnectTextBox.placeholder = "Connect Instagram"
-                self.scrollView.addSubview(instagramConnectTextBox)
+
             } else {
                 // Creating instagram view
                 viewY = viewY + 100
@@ -511,9 +492,35 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
 //            }
             // Adding scroll view to main view
             let scrollViewHeightCGFloat = CGFloat(viewY + 100)
-
+            
             self.scrollView.contentSize = CGSize(width: screenSize.width, height: scrollViewHeightCGFloat)
             self.view.addSubview(self.scrollView)
+            
+            // Creating bottom docked nav
+            let homeBottomDockedNav = UIView(frame: CGRect(x: 0, y: Int(screenSize.height - 75), width: Int(screenSize.width), height: 75))
+            homeBottomDockedNav.backgroundColor = .white
+            self.view.addSubview(homeBottomDockedNav)
+            
+            let navItemX = screenSize.width/4
+            
+            // Dock Images
+            let homeImageBottomNavImageButton = UIButton(frame: CGRect(x: Int(navItemX - 75), y: Int(screenSize.height - 75), width:50, height: 50))
+            homeImageBottomNavImageButton.setImage(UIImage(named: "icons8-home-filled-50.png"), for: .normal)
+            self.view.addSubview(homeImageBottomNavImageButton)
+            
+            let tipsImageBottomNavImageButton = UIButton(frame: CGRect(x: Int(navItemX*2 - 75), y: Int(screenSize.height - 75), width:50, height: 50))
+            tipsImageBottomNavImageButton.setImage(UIImage(named: "icons8-sheet-50.png"), for: .normal)
+            self.view.addSubview(tipsImageBottomNavImageButton)
+            
+            let socialMediaImageBottomNavImageButton = UIButton(frame: CGRect(x: Int(navItemX*3 - 75), y: Int(screenSize.height - 75), width:50, height: 50))
+            socialMediaImageBottomNavImageButton.setImage(UIImage(named: "icons8-news-feed-50.png"), for: .normal)
+            self.view.addSubview(socialMediaImageBottomNavImageButton)
+            
+            let infoImageBottomNavImageButton = UIButton(frame: CGRect(x: Int(navItemX*4 - 75), y: Int(screenSize.height - 75), width:50, height: 50))
+            infoImageBottomNavImageButton.setImage(UIImage(named: "icons8-info-50.png"), for: .normal)
+            infoImageBottomNavImageButton.addTarget(self, action: #selector(self.aboutButtonAction), for: .touchUpInside)
+            self.view.addSubview(infoImageBottomNavImageButton)
+
             
         }
         // Do any additional setup after loading the view.
@@ -559,6 +566,9 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
             self.view.setNeedsLayout()
         }
         refreshControlHome.endRefreshing()
+    }
+    @objc func homeToCompetitionAndWebsiteGestureFunction(fromGesture gesture: UISwipeGestureRecognizer) {
+        self.performSegue(withIdentifier: "homeToCompetitionAndWebsiteSegue", sender: self)
     }
 
     /*

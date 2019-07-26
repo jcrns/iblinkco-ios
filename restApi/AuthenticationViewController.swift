@@ -238,7 +238,7 @@ class AuthenticationViewController: UIViewController, UIScrollViewDelegate {
 //                    print("Second Print Section\n")
                     let userDataReturned = try JSONDecoder().decode(parsedData.self, from: data)
 //
-//                    print(userDataReturned)
+                    print(userDataReturned)
                     
                     
                     // Putting data in session

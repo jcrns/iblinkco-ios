@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		5E11AB5722E531B700185493 /* InstagramStreamViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E11AB5622E531B700185493 /* InstagramStreamViewController.swift */; };
 		5E11AB5922E531F800185493 /* TwitterStreamViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E11AB5822E531F800185493 /* TwitterStreamViewController.swift */; };
+		5E11AB5B22EA60F400185493 /* StreamSelectAndTipsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E11AB5A22EA60F300185493 /* StreamSelectAndTipsViewController.swift */; };
+		5E11AB5D22EA669C00185493 /* CompetitionAndWebsiteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E11AB5C22EA669C00185493 /* CompetitionAndWebsiteViewController.swift */; };
 		5E35B61B2260331600D58D92 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E35B61A2260331600D58D92 /* AppDelegate.swift */; };
 		5E35B6222260331900D58D92 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5E35B6212260331900D58D92 /* Assets.xcassets */; };
 		5E35B6252260331900D58D92 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5E35B6232260331900D58D92 /* LaunchScreen.storyboard */; };
@@ -26,6 +28,8 @@
 		5824E3F5B8B1E23BE63D37B6 /* Pods_restApi.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_restApi.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5E11AB5622E531B700185493 /* InstagramStreamViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstagramStreamViewController.swift; sourceTree = "<group>"; };
 		5E11AB5822E531F800185493 /* TwitterStreamViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwitterStreamViewController.swift; sourceTree = "<group>"; };
+		5E11AB5A22EA60F300185493 /* StreamSelectAndTipsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StreamSelectAndTipsViewController.swift; sourceTree = "<group>"; };
+		5E11AB5C22EA669C00185493 /* CompetitionAndWebsiteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompetitionAndWebsiteViewController.swift; sourceTree = "<group>"; };
 		5E35B6172260331600D58D92 /* restApi.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = restApi.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5E35B61A2260331600D58D92 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5E35B61C2260331600D58D92 /* AuthenticationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationViewController.swift; sourceTree = "<group>"; };
@@ -78,6 +82,8 @@
 				5E35B61A2260331600D58D92 /* AppDelegate.swift */,
 				5E35B61C2260331600D58D92 /* AuthenticationViewController.swift */,
 				5E35B61E2260331600D58D92 /* Main.storyboard */,
+				5E11AB5A22EA60F300185493 /* StreamSelectAndTipsViewController.swift */,
+				5E11AB5C22EA669C00185493 /* CompetitionAndWebsiteViewController.swift */,
 				5E11AB5822E531F800185493 /* TwitterStreamViewController.swift */,
 				5E11AB5622E531B700185493 /* InstagramStreamViewController.swift */,
 				5E57266E22D50B3E002DCB2D /* swipeFromRight.swift */,
@@ -224,7 +230,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5E11AB5B22EA60F400185493 /* StreamSelectAndTipsViewController.swift in Sources */,
 				5E57266B22D50822002DCB2D /* AboutViewController.swift in Sources */,
+				5E11AB5D22EA669C00185493 /* CompetitionAndWebsiteViewController.swift in Sources */,
 				5E57266F22D50B3E002DCB2D /* swipeFromRight.swift in Sources */,
 				5E57266722CD22DE002DCB2D /* CompetitionViewController.swift in Sources */,
 				5E547FC322B0CA1D00A6938A /* AuthenticationViewController.swift in Sources */,
