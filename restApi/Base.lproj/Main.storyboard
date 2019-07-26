@@ -112,7 +112,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="68" y="133.5832083958021"/>
+            <point key="canvasLocation" x="-1186" y="57"/>
         </scene>
         <!--About View Controller-->
         <scene sceneID="8sO-be-oBF">
@@ -130,7 +130,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Nkg-mG-0bT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="838" y="-626"/>
+            <point key="canvasLocation" x="2286" y="55"/>
         </scene>
         <!--Home View Controller-->
         <scene sceneID="MiO-A2-FBb">
@@ -143,17 +143,14 @@
                         <viewLayoutGuide key="safeArea" id="Q5V-7u-uZw"/>
                     </view>
                     <connections>
-                        <segue destination="scZ-od-tCk" kind="show" identifier="homeToCompetitionSegue" customClass="swipeFromRight" customModule="restApi" customModuleProvider="target" id="dBc-ee-Jvj"/>
                         <segue destination="cjw-uU-tkZ" kind="show" identifier="homeToAboutSegue" customClass="swipeFromRight" customModule="restApi" customModuleProvider="target" id="1rm-Gb-c1B"/>
                         <segue destination="BYZ-38-t0r" kind="show" identifier="homeToAuthentication" customClass="swipeFromLeft" customModule="restApi" customModuleProvider="target" id="9iw-XP-L09"/>
-                        <segue destination="p3Q-0W-pJc" kind="show" identifier="homeToInstagramStreamSegue" customClass="swipeFromRight" customModule="restApi" customModuleProvider="target" id="N7X-X8-yPA"/>
-                        <segue destination="CMQ-3L-OrQ" kind="show" identifier="homeToTwitterStreamSegue" customClass="swipeFromRight" customModule="restApi" customModuleProvider="target" id="cLH-6l-2I8"/>
                         <segue destination="z3M-Qo-ZVt" kind="show" identifier="homeToCompetitionAndWebsiteSegue" customClass="swipeFromRight" customModule="restApi" customModuleProvider="target" id="gfc-nf-p4p"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sHp-Lq-IaC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="837.60000000000002" y="133.5832083958021"/>
+            <point key="canvasLocation" x="-249" y="56"/>
         </scene>
         <!--Instagram Stream View Controller-->
         <scene sceneID="m7J-me-dLG">
@@ -166,30 +163,12 @@
                         <viewLayoutGuide key="safeArea" id="3gL-hd-2IF"/>
                     </view>
                     <connections>
-                        <segue destination="PuM-pz-ftA" kind="show" identifier="instagramStreamToHomeSegue" customClass="swipeFromLeft" customModule="restApi" customModuleProvider="target" id="4eq-0F-J2s"/>
+                        <segue destination="87B-pd-urv" kind="show" identifier="instagramStreamToStreamSelectAndTipsSegue" customClass="swipeFromLeft" customModule="restApi" customModuleProvider="target" id="L2v-OT-xs7"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Vdg-lc-K2v" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="68" y="918"/>
-        </scene>
-        <!--Competition View Controller-->
-        <scene sceneID="Rjw-YC-dTT">
-            <objects>
-                <viewController id="scZ-od-tCk" customClass="CompetitionViewController" customModule="restApi" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="u66-2X-LMh">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <viewLayoutGuide key="safeArea" id="l1N-wc-vD7"/>
-                    </view>
-                    <connections>
-                        <segue destination="PuM-pz-ftA" kind="show" identifier="competitionToHomeSegue" customClass="swipeFromLeft" customModule="restApi" customModuleProvider="target" id="YM3-qS-TzP"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="r0p-Gx-emE" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1606" y="134"/>
+            <point key="canvasLocation" x="942" y="918"/>
         </scene>
         <!--Competition And Website View Controller-->
         <scene sceneID="icM-CJ-ZVn">
@@ -208,7 +187,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YNT-vm-0nM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="854" y="910"/>
+            <point key="canvasLocation" x="594" y="56"/>
         </scene>
         <!--Stream Select And Tips View Controller-->
         <scene sceneID="Ow6-SW-dxZ">
@@ -223,11 +202,13 @@
                     <connections>
                         <segue destination="z3M-Qo-ZVt" kind="show" identifier="streamSelectAndTipsToCompetitionAndWebsiteSegue" customClass="swipeFromLeft" customModule="restApi" customModuleProvider="target" id="Wk6-cW-UK3"/>
                         <segue destination="cjw-uU-tkZ" kind="show" identifier="streamSelectAndTipsToAboutSegue" customClass="swipeFromRight" customModule="restApi" customModuleProvider="target" id="b8R-KD-374"/>
+                        <segue destination="p3Q-0W-pJc" kind="show" identifier="streamSelectAndTipsToInstagramStreamSegue" customClass="swipeFromRight" customModule="restApi" customModuleProvider="target" id="w7u-Si-xg0"/>
+                        <segue destination="CMQ-3L-OrQ" kind="show" identifier="streamSelectAndTipsToTwitterStreamSegue" customClass="swipeFromRight" customModule="restApi" customModuleProvider="target" id="TIk-hj-Bg5"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sp3-vY-9pu" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="838" y="1660"/>
+            <point key="canvasLocation" x="1431" y="56"/>
         </scene>
         <!--Twitter Stream View Controller-->
         <scene sceneID="W9Q-zv-elT">
@@ -240,21 +221,21 @@
                         <viewLayoutGuide key="safeArea" id="leT-pU-fAG"/>
                     </view>
                     <connections>
-                        <segue destination="PuM-pz-ftA" kind="show" identifier="twitterStreamToHomeSegue" customClass="swipeFromLeft" customModule="restApi" customModuleProvider="target" id="YuB-6d-Sai"/>
+                        <segue destination="87B-pd-urv" kind="show" identifier="twitterStreamToStreamSelectAndTipsSegue" customClass="swipeFromLeft" customModule="restApi" customModuleProvider="target" id="bJ8-ye-5iQ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="13f-NC-U60" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1606" y="900"/>
+            <point key="canvasLocation" x="2014" y="918"/>
         </scene>
     </scenes>
     <resources>
         <image name="headerlogowebsite" width="120.23999786376953" height="44.159999847412109"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="YMW-0X-kJM"/>
+        <segue reference="L2v-OT-xs7"/>
         <segue reference="Wk6-cW-UK3"/>
-        <segue reference="2xD-o6-zuN"/>
+        <segue reference="ild-Gz-DNE"/>
         <segue reference="b8R-KD-374"/>
     </inferredMetricsTieBreakers>
 </document>

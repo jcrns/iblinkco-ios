@@ -28,7 +28,7 @@ class InstagramStreamViewController: UIViewController {
             
             // Do any additional setup after loading the view.
             // Recognizing swipe right gesture
-            let instagramStreamSwipeRightGesture = UISwipeGestureRecognizer(target: self, action: #selector(self.instagramStreamToHomeSegueFunction))
+            let instagramStreamSwipeRightGesture = UISwipeGestureRecognizer(target: self, action: #selector(self.instagramStreamToStreamSelectAndTipsSegueFunction))
             instagramStreamSwipeRightGesture.direction = UISwipeGestureRecognizer.Direction.right
             self.view.addGestureRecognizer(instagramStreamSwipeRightGesture)
             print(instagramPostsCaption)
@@ -126,8 +126,8 @@ class InstagramStreamViewController: UIViewController {
             self.view.addSubview(self.scrollView)
         }
     }
-    @objc func instagramStreamToHomeSegueFunction(fromGesture gesture: UISwipeGestureRecognizer) {
-        self.performSegue(withIdentifier: "instagramStreamToHomeSegue", sender: self)
+    @objc func instagramStreamToStreamSelectAndTipsSegueFunction(fromGesture gesture: UISwipeGestureRecognizer) {
+        self.performSegue(withIdentifier: "instagramStreamToStreamSelectAndTipsSegue", sender: self)
     }
 
     /*

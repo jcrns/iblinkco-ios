@@ -14,7 +14,7 @@ class TwitterStreamViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         DispatchQueue.main.async {
-    
+            
             // Getting Instagram data
             let tweetsText = UserDefaults.standard.stringArray(forKey: "tweetsText") ?? [String]()
             let tweetsTime = UserDefaults.standard.stringArray(forKey: "tweetsTime") ?? [String]()
@@ -27,7 +27,7 @@ class TwitterStreamViewController: UIViewController {
             self.scrollView = UIScrollView(frame: CGRect(x: 0, y: 0, width: screenSize.width, height: screenSize.height))
             
             // Do any additional setup after loading the view.
-            let twitterStreamSwipeRightGesture = UISwipeGestureRecognizer(target: self, action: #selector(self.twitterStreamToHomeSegueFunction))
+            let twitterStreamSwipeRightGesture = UISwipeGestureRecognizer(target: self, action: #selector(self.twitterStreamToSelectAndTipsSegueFunction))
             twitterStreamSwipeRightGesture.direction = UISwipeGestureRecognizer.Direction.right
             self.view.addGestureRecognizer(twitterStreamSwipeRightGesture)
             
@@ -99,8 +99,8 @@ class TwitterStreamViewController: UIViewController {
             self.view.addSubview(self.scrollView)
         }
     }
-    @objc func twitterStreamToHomeSegueFunction(fromGesture gesture: UISwipeGestureRecognizer) {
-        self.performSegue(withIdentifier: "twitterStreamToHomeSegue", sender: self)
+    @objc func twitterStreamToSelectAndTipsSegueFunction(fromGesture gesture: UISwipeGestureRecognizer) {
+        self.performSegue(withIdentifier: "twitterStreamToStreamSelectAndTipsSegue", sender: self)
     }
 
     /*

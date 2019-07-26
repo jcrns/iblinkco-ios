@@ -13,6 +13,18 @@ class StreamSelectAndTipsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         DispatchQueue.main.async {
+            // Setting Background image
+            UIGraphicsBeginImageContext(self.view.frame.size)
+            UIImage(named: "thesky.jpg")!.draw(in: self.view.bounds)
+            
+            if let image = UIGraphicsGetImageFromCurrentImageContext(){
+                UIGraphicsEndImageContext()
+                self.view.backgroundColor = UIColor(patternImage: image)
+            }else{
+                UIGraphicsEndImageContext()
+                debugPrint("Image not available")
+            }
+            
             // Adding screen size
             let screenSize: CGRect = UIScreen.main.bounds
             
@@ -117,7 +129,7 @@ class StreamSelectAndTipsViewController: UIViewController {
                 twitterStreamViewButton.backgroundColor = blueButton
                 twitterStreamViewButton.setTitle("Twitter Stream", for: .normal)
                 twitterStreamViewButton.center.x = self.view.center.x
-//                twitterStreamViewButton.addTarget(self, action: #selector(self.twitterStreamAction), for: .touchUpInside)
+                twitterStreamViewButton.addTarget(self, action: #selector(self.streamSelectAndTipsToTwitterStreamButtonAction), for: .touchUpInside)
                 
                 self.scrollView.addSubview(twitterStreamViewButton)
                 
@@ -162,7 +174,7 @@ class StreamSelectAndTipsViewController: UIViewController {
                 instagramStreamViewButton.backgroundColor = blueButton
                 instagramStreamViewButton.setTitle("Instagram Stream", for: .normal)
                 instagramStreamViewButton.center.x = self.view.center.x
-//                instagramStreamViewButton.addTarget(self, action: #selector(self.instagramStreamAction), for: .touchUpInside)
+                instagramStreamViewButton.addTarget(self, action: #selector(self.streamSelectAndTipsToInstagramStreamButtonAction), for: .touchUpInside)
                 //
                 self.scrollView.addSubview(instagramStreamViewButton)
                 
@@ -216,6 +228,12 @@ class StreamSelectAndTipsViewController: UIViewController {
     }
     @objc func streamSelectAndTipsToAboutGestureFunction(fromGesture gesture: UISwipeGestureRecognizer) {
         self.performSegue(withIdentifier: "streamSelectAndTipsToAboutSegue", sender: self)
+    }
+    @objc func streamSelectAndTipsToInstagramStreamButtonAction(sender: UIButton!) {
+        self.performSegue(withIdentifier: "streamSelectAndTipsToInstagramStreamSegue", sender: self)
+    }
+    @objc func streamSelectAndTipsToTwitterStreamButtonAction(sender: UIButton!) {
+        self.performSegue(withIdentifier: "streamSelectAndTipsToTwitterStreamSegue", sender: self)
     }
 
     /*

@@ -14,6 +14,18 @@ class CompetitionAndWebsiteViewController: UIViewController {
         super.viewDidLoad()
         DispatchQueue.main.async {
             
+            // Setting Background image
+            UIGraphicsBeginImageContext(self.view.frame.size)
+            UIImage(named: "thesky.jpg")!.draw(in: self.view.bounds)
+            
+            if let image = UIGraphicsGetImageFromCurrentImageContext(){
+                UIGraphicsEndImageContext()
+                self.view.backgroundColor = UIColor(patternImage: image)
+            }else{
+                UIGraphicsEndImageContext()
+                debugPrint("Image not available")
+            }
+            
             // Getting data
             let competitionTitle = UserDefaults.standard.stringArray(forKey: "competitionTitle") ?? [String]()
             let competitionLink = UserDefaults.standard.stringArray(forKey: "competitionLink") ?? [String]()
@@ -44,11 +56,13 @@ class CompetitionAndWebsiteViewController: UIViewController {
             let competitionCount = competitionTitle.count - 1
             for i in 0...competitionCount {
                 // Creating view for post
-                let competitionView = UIView(frame: CGRect(x: 0, y: viewY, width: Int(screenSize.width), height: viewHeight))
+                let competitionView = UIView(frame: CGRect(x: 0, y: viewY, width: Int(screenSize.width - 10), height: viewHeight))
+                competitionView.layer.cornerRadius = 8.0
                 competitionView.backgroundColor = UIColor.white
                 competitionView.center.x = self.view.center.x
                 self.scrollView.addSubview(competitionView)
                 
+                viewY = viewY + 30
                 let competitionNameLabel = UILabel(frame: CGRect(x: 0, y: 100, width: Int(screenSize.width), height: 240))
                 competitionNameLabel.center = CGPoint(x: 160, y: viewY)
                 competitionNameLabel.textColor = .black
