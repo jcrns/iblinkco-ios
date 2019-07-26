@@ -256,10 +256,12 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
             
             let tipsImageBottomNavImageButton = UIButton(frame: CGRect(x: Int(navItemX*2 - 75), y: Int(screenSize.height - 75), width:50, height: 50))
             tipsImageBottomNavImageButton.setImage(UIImage(named: "icons8-sheet-50.png"), for: .normal)
+            tipsImageBottomNavImageButton.addTarget(self, action: #selector(self.competitionAndWebsiteButtonAction), for: .touchUpInside)
             self.view.addSubview(tipsImageBottomNavImageButton)
-            
+
             let socialMediaImageBottomNavImageButton = UIButton(frame: CGRect(x: Int(navItemX*3 - 75), y: Int(screenSize.height - 75), width:50, height: 50))
             socialMediaImageBottomNavImageButton.setImage(UIImage(named: "icons8-news-feed-50.png"), for: .normal)
+            socialMediaImageBottomNavImageButton.addTarget(self, action: #selector(self.homeToStreamSelectAndTipsButtonAction), for: .touchUpInside)
             self.view.addSubview(socialMediaImageBottomNavImageButton)
             
             let infoImageBottomNavImageButton = UIButton(frame: CGRect(x: Int(navItemX*4 - 75), y: Int(screenSize.height - 75), width:50, height: 50))
@@ -280,15 +282,19 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
         print("Button tapped")
         self.performSegue(withIdentifier: "homeToCompetitionSegue", sender: self)
     }
+    
+    // Navigation actions
     @objc func aboutButtonAction(sender: UIButton!) {
         print("Button tapped")
         self.performSegue(withIdentifier: "homeToAboutSegue", sender: self)
     }
-    @objc func twitterStreamAction(sender: UIButton!) {
-        self.performSegue(withIdentifier: "homeToTwitterStreamSegue", sender: self)
+    @objc func competitionAndWebsiteButtonAction(sender: UIButton!) {
+        print("Button tapped")
+        self.performSegue(withIdentifier: "homeToCompetitionAndWebsiteSegue", sender: self)
     }
-    @objc func instagramStreamAction(sender: UIButton!) {
-        self.performSegue(withIdentifier: "homeToInstagramStreamSegue", sender: self)
+    @objc func homeToStreamSelectAndTipsButtonAction(sender: UIButton!) {
+        print("Button tapped")
+        self.performSegue(withIdentifier: "homeToStreamSelectAndTipsSegue", sender: self)
     }
     @objc func logoutButtonAction(sender: UIButton!) {
         print("Button tapped")

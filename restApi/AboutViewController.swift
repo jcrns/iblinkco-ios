@@ -83,15 +83,17 @@ class AboutViewController: UIViewController {
         // Dock Images
         let homeImageBottomNavImageButton = UIButton(frame: CGRect(x: Int(navItemX - 75), y: Int(screenSize.height - 75), width:50, height: 50))
         homeImageBottomNavImageButton.setImage(UIImage(named: "icons8-home-50.png"), for: .normal)
-        homeImageBottomNavImageButton.addTarget(self, action: #selector(self.aboutToStreamSelectAndTipsSegueGestureFunction), for: .touchUpInside)
+        homeImageBottomNavImageButton.addTarget(self, action: #selector(self.homeButtonAction), for: .touchUpInside)
         self.view.addSubview(homeImageBottomNavImageButton)
         
         let tipsImageBottomNavImageButton = UIButton(frame: CGRect(x: Int(navItemX*2 - 75), y: Int(screenSize.height - 75), width:50, height: 50))
         tipsImageBottomNavImageButton.setImage(UIImage(named: "icons8-sheet-50.png"), for: .normal)
+        tipsImageBottomNavImageButton.addTarget(self, action: #selector(self.aboutToCompetitionAndWebsiteButtonAction), for: .touchUpInside)
         self.view.addSubview(tipsImageBottomNavImageButton)
         
         let socialMediaImageBottomNavImageButton = UIButton(frame: CGRect(x: Int(navItemX*3 - 75), y: Int(screenSize.height - 75), width:50, height: 50))
         socialMediaImageBottomNavImageButton.setImage(UIImage(named: "icons8-news-feed-50.png"), for: .normal)
+        socialMediaImageBottomNavImageButton.addTarget(self, action: #selector(self.aboutToStreamSelectAndTipsButtonAction), for: .touchUpInside)
         self.view.addSubview(socialMediaImageBottomNavImageButton)
         
         let infoImageBottomNavImageButton = UIButton(frame: CGRect(x: Int(navItemX*4 - 75), y: Int(screenSize.height - 75), width:50, height: 50))
@@ -99,10 +101,20 @@ class AboutViewController: UIViewController {
         self.view.addSubview(infoImageBottomNavImageButton)
 
     }
+    // Navigation actions
+    @objc func homeButtonAction(sender: UIButton!) {
+        self.performSegue(withIdentifier: "aboutToHomeSegue", sender: self)
+    }
+    @objc func aboutToCompetitionAndWebsiteButtonAction(sender: UIButton!) {
+        self.performSegue(withIdentifier: "aboutToCompetitionAndWebsiteSegue", sender: self)
+    }
+    @objc func aboutToStreamSelectAndTipsButtonAction(sender: UIButton!) {
+        self.performSegue(withIdentifier: "aboutToStreamSelectAndTipsSegue", sender: self)
+    }
+    
     @objc func aboutToStreamSelectAndTipsSegueGestureFunction(fromGesture gesture: UISwipeGestureRecognizer) {
         self.performSegue(withIdentifier: "aboutToStreamSelectAndTipsSegue", sender: self)
     }
-
     /*
     // MARK: - Navigation
 

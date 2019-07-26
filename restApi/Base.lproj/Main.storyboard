@@ -126,6 +126,8 @@
                     </view>
                     <connections>
                         <segue destination="87B-pd-urv" kind="show" identifier="aboutToStreamSelectAndTipsSegue" customClass="swipeFromLeft" customModule="restApi" customModuleProvider="target" id="ZeZ-hh-CO8"/>
+                        <segue destination="PuM-pz-ftA" kind="show" identifier="aboutToHomeSegue" customClass="swipeFromLeft" customModule="restApi" customModuleProvider="target" id="ESD-A5-MP4"/>
+                        <segue destination="z3M-Qo-ZVt" kind="show" identifier="aboutToCompetitionAndWebsiteSegue" customClass="swipeFromLeft" customModule="restApi" customModuleProvider="target" id="cez-K9-5xv"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Nkg-mG-0bT" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -146,6 +148,7 @@
                         <segue destination="cjw-uU-tkZ" kind="show" identifier="homeToAboutSegue" customClass="swipeFromRight" customModule="restApi" customModuleProvider="target" id="1rm-Gb-c1B"/>
                         <segue destination="BYZ-38-t0r" kind="show" identifier="homeToAuthentication" customClass="swipeFromLeft" customModule="restApi" customModuleProvider="target" id="9iw-XP-L09"/>
                         <segue destination="z3M-Qo-ZVt" kind="show" identifier="homeToCompetitionAndWebsiteSegue" customClass="swipeFromRight" customModule="restApi" customModuleProvider="target" id="gfc-nf-p4p"/>
+                        <segue destination="87B-pd-urv" kind="show" identifier="homeToStreamSelectAndTipsSegue" customClass="swipeFromRight" customModule="restApi" customModuleProvider="target" id="EGk-fl-O6T"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sHp-Lq-IaC" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -183,6 +186,7 @@
                     <connections>
                         <segue destination="PuM-pz-ftA" kind="show" identifier="competitionAndWebsiteToHomeSegue" customClass="swipeFromLeft" customModule="restApi" customModuleProvider="target" id="ild-Gz-DNE"/>
                         <segue destination="87B-pd-urv" kind="show" identifier="competitionAndWebsiteToStreamSelectAndTipsSegue" customClass="swipeFromRight" customModule="restApi" customModuleProvider="target" id="YMW-0X-kJM"/>
+                        <segue destination="cjw-uU-tkZ" kind="show" identifier="competitionAndWebsiteToAboutSegue" customClass="swipeFromRight" customModule="restApi" customModuleProvider="target" id="pwG-8o-BEW"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YNT-vm-0nM" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -204,6 +208,7 @@
                         <segue destination="cjw-uU-tkZ" kind="show" identifier="streamSelectAndTipsToAboutSegue" customClass="swipeFromRight" customModule="restApi" customModuleProvider="target" id="b8R-KD-374"/>
                         <segue destination="p3Q-0W-pJc" kind="show" identifier="streamSelectAndTipsToInstagramStreamSegue" customClass="swipeFromRight" customModule="restApi" customModuleProvider="target" id="w7u-Si-xg0"/>
                         <segue destination="CMQ-3L-OrQ" kind="show" identifier="streamSelectAndTipsToTwitterStreamSegue" customClass="swipeFromRight" customModule="restApi" customModuleProvider="target" id="TIk-hj-Bg5"/>
+                        <segue destination="PuM-pz-ftA" kind="show" identifier="streamSelectAndTipsToHomeSegue" customClass="swipeFromLeft" customModule="restApi" customModuleProvider="target" id="01O-56-erx"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sp3-vY-9pu" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -233,9 +238,9 @@
         <image name="headerlogowebsite" width="120.23999786376953" height="44.159999847412109"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="L2v-OT-xs7"/>
-        <segue reference="Wk6-cW-UK3"/>
-        <segue reference="ild-Gz-DNE"/>
+        <segue reference="ZeZ-hh-CO8"/>
+        <segue reference="cez-K9-5xv"/>
+        <segue reference="ESD-A5-MP4"/>
         <segue reference="b8R-KD-374"/>
     </inferredMetricsTieBreakers>
 </document>
