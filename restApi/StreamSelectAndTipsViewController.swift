@@ -10,6 +10,14 @@ import UIKit
 
 class StreamSelectAndTipsViewController: UIViewController {
     var scrollView: UIScrollView!
+    
+    lazy var refreshControlStreamSelectAndTips: UIRefreshControl = {
+        let refreshControl = UIRefreshControl()
+        refreshControl.tintColor = .gray
+        refreshControl.addTarget(self, action: #selector(self.refreshPage), for: .valueChanged)
+        return refreshControl
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         DispatchQueue.main.async {
@@ -33,6 +41,9 @@ class StreamSelectAndTipsViewController: UIViewController {
             
             // Creating scroll view
             self.scrollView = UIScrollView(frame: CGRect(x: 0, y: 0, width: screenSize.width, height: screenSize.height-75))
+            
+            // Refresh
+            self.scrollView.refreshControl = self.refreshControlStreamSelectAndTips
             
             // Recognizing swipe right gesture
             let swipeRightGesture = UISwipeGestureRecognizer(target: self, action: #selector(self.streamSelectAndTipsToCompetitionAndWebsiteGestureFunction))
@@ -253,7 +264,19 @@ class StreamSelectAndTipsViewController: UIViewController {
         self.performSegue(withIdentifier: "streamSelectAndTipsToTwitterStreamSegue", sender: self)
     }
     
-    
+    @objc func refreshPage(){
+        print("ekfbeigkrtdbgigk")
+        let email = UserDefaults.standard.object(forKey: "email") as! String
+        let password = UserDefaults.standard.object(forKey: "password") as! String
+        print(email)
+        print(password)
+        AuthenticationViewController().callApi(email: email, password: password)
+        print("ppdergwrbrwg")
+        DispatchQueue.main.async{
+            self.view.setNeedsLayout()
+        }
+        refreshControlStreamSelectAndTips.endRefreshing()
+    }
     /*
     // MARK: - Navigation
 

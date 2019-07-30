@@ -158,53 +158,51 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
             // Adding graph to phone
             
             // Creating graph view
-            viewY = viewY + 81
-            let lineChartView = LineChartView(frame: CGRect(x: 0, y: viewY, width: Int(screenSize.width), height: viewHeight + 200))
-            lineChartView.backgroundColor = UIColor.white
-            lineChartView.center.x = self.view.center.x
-            viewY = viewY + viewHeight
+//            viewY = viewY + 81
+//            let lineChartView = LineChartView(frame: CGRect(x: 0, y: viewY, width: Int(screenSize.width), height: viewHeight + 200))
+//            lineChartView.backgroundColor = UIColor.white
+//            lineChartView.center.x = self.view.center.x
+//            viewY = viewY + viewHeight
+//
+//            // Importing graph
+//            let count = Int(arc4random_uniform(20) + 3)
+//
+//            let values = (0..<count).map { (i) -> ChartDataEntry in
+////                let val = Double(arc4random_uniform(UInt32(count)) + 3)
+//                var val = 0.0
+//                print(twitterFollowersHistoryFollowerCount)
+//                for followers_count in twitterFollowersHistoryFollowerCount {
+//                    print(twitterFollowersHistoryFollowerCount)
+//                    val = Double(twitterFollowersHistoryFollowerCount[i])!
+//                }
+//                print("i")
+//                print(i)
+//                print(val)
+//                return ChartDataEntry(x: Double(i), y: Double(val))
+//            }
+//
+//            let set1 = LineChartDataSet(values: values, label: "Followers Twitter")
+//            let data = LineChartData(dataSet: set1)
+//            lineChartView.data = data
+//            self.scrollView.addSubview(lineChartView)
+//
 
-            // Importing graph
-            let count = Int(arc4random_uniform(20) + 3)
-
-            let values = (0..<count).map { (i) -> ChartDataEntry in
-//                let val = Double(arc4random_uniform(UInt32(count)) + 3)
-                var val = 0.0
-                print(twitterFollowersHistoryFollowerCount)
-                for followers_count in twitterFollowersHistoryFollowerCount {
-                    print(twitterFollowersHistoryFollowerCount)
-                    val = Double(twitterFollowersHistoryFollowerCount[i])!
-                }
-                print("i")
-                print(i)
-                print(val)
-                return ChartDataEntry(x: Double(i), y: Double(val))
-            }
-
-            let set1 = LineChartDataSet(values: values, label: "Followers Twitter")
-            let data = LineChartData(dataSet: set1)
-            lineChartView.data = data
-            self.scrollView.addSubview(lineChartView)
-            
-
-        
-            
-            viewY = viewY + 164
-            let followersTrendSmallText = UILabel(frame: CGRect(x: 0, y: 50, width: Int(screenSize.width), height: 160))
-            followersTrendSmallText.center = CGPoint(x: 160, y: viewY)
-            followersTrendSmallText.textColor = .black
-            followersTrendSmallText.textAlignment = .center
-            followersTrendSmallText.text = "Here's a graph for your recent amounts of followers"
-            followersTrendSmallText.center.x = self.view.center.x
-            followersTrendSmallText.font = followersTrendSmallText.font.withSize(12)
-            self.scrollView.addSubview(followersTrendSmallText)
+//            viewY = viewY + 164
+//            let followersTrendSmallText = UILabel(frame: CGRect(x: 0, y: 50, width: Int(screenSize.width), height: 160))
+//            followersTrendSmallText.center = CGPoint(x: 160, y: viewY)
+//            followersTrendSmallText.textColor = .black
+//            followersTrendSmallText.textAlignment = .center
+//            followersTrendSmallText.text = "Here's a graph for your recent amounts of followers"
+//            followersTrendSmallText.center.x = self.view.center.x
+//            followersTrendSmallText.font = followersTrendSmallText.font.withSize(12)
+//            self.scrollView.addSubview(followersTrendSmallText)
 
             // Website Data
             viewY = viewY + 164
-            let websiteView = UIView(frame: CGRect(x: 0, y: viewY, width: Int(screenSize.width), height: viewHeight - 36))
-            websiteView.backgroundColor = UIColor.white
-            websiteView.center.x = self.view.center.x
-            self.scrollView.addSubview(websiteView)
+            let optionsView = UIView(frame: CGRect(x: 0, y: viewY, width: Int(screenSize.width), height: viewHeight - 36))
+            optionsView.backgroundColor = UIColor.white
+            optionsView.center.x = self.view.center.x
+            self.scrollView.addSubview(optionsView)
             print(viewY)
             
             // About button
@@ -298,11 +296,7 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
     }
     @objc func logoutButtonAction(sender: UIButton!) {
         print("Button tapped")
-        // Clearing user defaults
-        let domain = Bundle.main.bundleIdentifier!
-        UserDefaults.standard.removePersistentDomain(forName: domain)
-        UserDefaults.standard.synchronize()
-        
+        AuthenticationViewController().clearSession()
         self.performSegue(withIdentifier: "homeToAuthentication", sender: self)
     }
     

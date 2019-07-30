@@ -186,14 +186,20 @@ class AuthenticationViewController: UIViewController, UIScrollViewDelegate {
         let password = passwordTextField.text
         
         if isSignIn{
-            // Syncing user requirements
-            UserDefaults.standard.setValue(email, forKey:"email");
-            UserDefaults.standard.synchronize();
-            UserDefaults.standard.setValue(password, forKey:"password");
-            UserDefaults.standard.synchronize();
-            self.callApi(email: email!, password: password!)
-            // Changing View
-            self.performSegue(withIdentifier: "loggedInSegue", sender: self)
+            let group = DispatchGroup()
+            group.enter()
+            DispatchQueue.main.async {
+                // Syncing user requirements
+                UserDefaults.standard.setValue(email, forKey:"email");
+                UserDefaults.standard.synchronize();
+                UserDefaults.standard.setValue(password, forKey:"password");
+                UserDefaults.standard.synchronize();
+                self.callApi(email: email!, password: password!)
+                // Changing View
+                self.performSegue(withIdentifier: "loggedInSegue", sender: self)
+                
+                group.leave()
+            }
         } else {
             self.createAccount(firstname: firstname!, lastname: lastname!, email: email!, password: password!)
         }
@@ -240,6 +246,8 @@ class AuthenticationViewController: UIViewController, UIScrollViewDelegate {
 //
                     print(userDataReturned)
                     
+                    // Clearing session
+                    self.clearSession()
                     
                     // Putting data in session
                     UserDefaults.standard.set(true, forKey: "userDataReturned")
@@ -430,6 +438,10 @@ class AuthenticationViewController: UIViewController, UIScrollViewDelegate {
     // Creating account
     func createAccount(firstname: String, lastname: String, email: String, password: String) {
         // User Registration
+        
+        // Clearing session
+        self.clearSession()
+        
         print("jajaja")
         
         // Defining paremeters for json post
@@ -476,5 +488,11 @@ class AuthenticationViewController: UIViewController, UIScrollViewDelegate {
             
             }.resume()
 
+    }
+    func clearSession(){
+        // Clearing user defaults
+        let domain = Bundle.main.bundleIdentifier!
+        UserDefaults.standard.removePersistentDomain(forName: domain)
+        UserDefaults.standard.synchronize()
     }
 }

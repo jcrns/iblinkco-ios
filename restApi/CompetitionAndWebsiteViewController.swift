@@ -10,6 +10,14 @@ import UIKit
 
 class CompetitionAndWebsiteViewController: UIViewController {
     var scrollView: UIScrollView!
+    
+    lazy var refreshControlCompetitionAndWebsite: UIRefreshControl = {
+        let refreshControl = UIRefreshControl()
+        refreshControl.tintColor = .gray
+        refreshControl.addTarget(self, action: #selector(HomeViewController.refreshPage), for: .valueChanged)
+        return refreshControl
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         DispatchQueue.main.async {
@@ -34,6 +42,13 @@ class CompetitionAndWebsiteViewController: UIViewController {
             let websiteName = UserDefaults.standard.object(forKey: "websiteName") as! String
             let websiteUrl = UserDefaults.standard.object(forKey: "websiteUrl") as! String
             
+            // Creating scroll view
+            let screenSize: CGRect = UIScreen.main.bounds
+            
+            self.scrollView = UIScrollView(frame: CGRect(x: 0, y: 0, width: screenSize.width, height: screenSize.height - 75))
+            
+            // Refresh
+            self.scrollView.refreshControl = self.refreshControlCompetitionAndWebsite
             
             // Recognizing swipe right gesture
             let aboutSwipeRightGesture = UISwipeGestureRecognizer(target: self, action: #selector(self.competitionAndWebsiteToHomeGestureFunction))
@@ -44,19 +59,15 @@ class CompetitionAndWebsiteViewController: UIViewController {
             aboutSwipeLeftGesture.direction = UISwipeGestureRecognizer.Direction.left
             self.view.addGestureRecognizer(aboutSwipeLeftGesture)
             
-            // Creating scroll view
-            let screenSize: CGRect = UIScreen.main.bounds
-            
             let blackColor : UIColor = UIColor.black
             
-            self.scrollView = UIScrollView(frame: CGRect(x: 0, y: 0, width: screenSize.width, height: screenSize.height - 75))
             var viewY = 100
             let viewHeight = 128
             // Competition
             let competitionCount = competitionTitle.count - 1
             for i in 0...competitionCount {
                 // Creating view for post
-                let competitionView = UIView(frame: CGRect(x: 0, y: viewY, width: Int(screenSize.width - 10), height: viewHeight))
+                let competitionView = UIView(frame: CGRect(x: 0, y: viewY, width: Int(screenSize.width - 10), height: viewHeight + 20))
                 competitionView.layer.cornerRadius = 8.0
                 competitionView.backgroundColor = UIColor.white
                 competitionView.center.x = self.view.center.x
@@ -75,21 +86,22 @@ class CompetitionAndWebsiteViewController: UIViewController {
                 self.scrollView.addSubview(competitionNameLabel)
                 
                 viewY = viewY + 56
-                let competitionLinkLabel = UILabel(frame: CGRect(x: 0, y: 75, width: Int(screenSize.width), height: 160))
-                competitionLinkLabel.center = CGPoint(x: 160, y: viewY)
-                competitionLinkLabel.textColor = .black
+                let competitionLinkButton = UIButton(frame: CGRect(x: 0, y: 75, width: Int(screenSize.width), height: 70))
+                competitionLinkButton.center = CGPoint(x: 160, y: viewY)
+                competitionLinkButton.setTitleColor(UIColor.black, for: .normal)
+                competitionLinkButton.titleLabel?.lineBreakMode = .byWordWrapping
+                competitionLinkButton.titleLabel?.numberOfLines = 0
+                competitionLinkButton.backgroundColor = .white
+                competitionLinkButton.titleLabel?.textAlignment = .center
+                competitionLinkButton.backgroundColor = .clear
+                competitionLinkButton.setTitleColor(.black, for: .normal)
+                competitionLinkButton.setTitle(competitionLink[i], for: .normal)
+                competitionLinkButton.center.x = self.view.center.x
+                competitionLinkButton.tag = i
+                competitionLinkButton.addTarget(self, action: #selector(self.openCompetitionLink), for: .touchUpInside)
+                self.scrollView.addSubview(competitionLinkButton)
                 
-                
-                competitionLinkLabel.lineBreakMode = .byWordWrapping
-                competitionLinkLabel.numberOfLines = 0
-                competitionLinkLabel.textAlignment = .center
-                
-                competitionLinkLabel.text = competitionLink[i]
-                competitionLinkLabel.center.x = self.view.center.x
-                competitionLinkLabel.font = competitionLinkLabel.font.withSize(16)
-                self.scrollView.addSubview(competitionLinkLabel)
-                
-                viewY = viewY + 96
+                viewY = viewY + 108
             }
             
             // Website Data
@@ -200,6 +212,32 @@ class CompetitionAndWebsiteViewController: UIViewController {
     }
     @objc func competitionAndWebsiteToStreamSelectAndTipsGestureFunction(fromGesture gesture: UISwipeGestureRecognizer) {
         self.performSegue(withIdentifier: "competitionAndWebsiteToStreamSelectAndTipsSegue", sender: self)
+    }
+    
+    // Refresh function
+    @objc func refreshPage(){
+        print("ekfbeigkrtdbgigk")
+        let email = UserDefaults.standard.object(forKey: "email") as! String
+        let password = UserDefaults.standard.object(forKey: "password") as! String
+        print(email)
+        print(password)
+        AuthenticationViewController().callApi(email: email, password: password)
+        print("ppdergwrbrwg")
+        DispatchQueue.main.async{
+            self.view.setNeedsLayout()
+        }
+        refreshControlCompetitionAndWebsite.endRefreshing()
+    }
+    
+    // Func to make links external
+    @objc func openCompetitionLink(sender: UIButton!) {
+        print("sde")
+        let senderInt = sender.tag
+        let competitionLink = UserDefaults.standard.stringArray(forKey: "competitionLink") ?? [String]()
+        let urlStr = competitionLink[senderInt]
+        if let url = URL(string:urlStr), !url.absoluteString.isEmpty {
+            UIApplication.shared.open(url, options: [:], completionHandler: nil)
+        }
     }
     /*
     // MARK: - Navigation
