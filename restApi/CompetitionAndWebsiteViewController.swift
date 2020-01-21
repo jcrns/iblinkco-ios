@@ -36,7 +36,7 @@ class CompetitionAndWebsiteViewController: UIViewController {
             
             // Getting data
             let competitionTitle = UserDefaults.standard.stringArray(forKey: "competitionTitle") ?? [String]()
-            let competitionLink = UserDefaults.standard.stringArray(forKey: "competitionLink") ?? [String]()
+            var competitionLink = UserDefaults.standard.stringArray(forKey: "competitionLink") ?? [String]()
             
             let websiteLinks = UserDefaults.standard.stringArray(forKey: "websiteLinks") ?? [String]()
             let websiteName = UserDefaults.standard.object(forKey: "websiteName") as! String
@@ -64,44 +64,48 @@ class CompetitionAndWebsiteViewController: UIViewController {
             var viewY = 100
             let viewHeight = 128
             // Competition
-            let competitionCount = competitionTitle.count - 1
-            for i in 0...competitionCount {
-                // Creating view for post
-                let competitionView = UIView(frame: CGRect(x: 0, y: viewY, width: Int(screenSize.width - 10), height: viewHeight + 20))
-                competitionView.layer.cornerRadius = 8.0
-                competitionView.backgroundColor = UIColor.white
-                competitionView.center.x = self.view.center.x
-                self.scrollView.addSubview(competitionView)
-                
-                viewY = viewY + 30
-                let competitionNameLabel = UILabel(frame: CGRect(x: 0, y: 100, width: Int(screenSize.width), height: 240))
-                competitionNameLabel.center = CGPoint(x: 160, y: viewY)
-                competitionNameLabel.textColor = .black
-                competitionNameLabel.lineBreakMode = .byWordWrapping
-                competitionNameLabel.numberOfLines = 0
-                competitionNameLabel.textAlignment = .center
-                competitionNameLabel.text = competitionTitle[i]
-                competitionNameLabel.center.x = self.view.center.x
-                competitionNameLabel.font = competitionNameLabel.font.withSize(18)
-                self.scrollView.addSubview(competitionNameLabel)
-                
-                viewY = viewY + 56
-                let competitionLinkButton = UIButton(frame: CGRect(x: 0, y: 75, width: Int(screenSize.width), height: 70))
-                competitionLinkButton.center = CGPoint(x: 160, y: viewY)
-                competitionLinkButton.setTitleColor(UIColor.black, for: .normal)
-                competitionLinkButton.titleLabel?.lineBreakMode = .byWordWrapping
-                competitionLinkButton.titleLabel?.numberOfLines = 0
-                competitionLinkButton.backgroundColor = .white
-                competitionLinkButton.titleLabel?.textAlignment = .center
-                competitionLinkButton.backgroundColor = .clear
-                competitionLinkButton.setTitleColor(.black, for: .normal)
-                competitionLinkButton.setTitle(competitionLink[i], for: .normal)
-                competitionLinkButton.center.x = self.view.center.x
-                competitionLinkButton.tag = i
-                competitionLinkButton.addTarget(self, action: #selector(self.openCompetitionLink), for: .touchUpInside)
-                self.scrollView.addSubview(competitionLinkButton)
-                
-                viewY = viewY + 108
+            if competitionLink[0] == "null" {
+                print("aaalmnoioh iuno")
+            } else {
+                let competitionCount = competitionTitle.count - 1
+                for i in 0...competitionCount {
+                    // Creating view for post
+                    let competitionView = UIView(frame: CGRect(x: 0, y: viewY, width: Int(screenSize.width - 10), height: viewHeight + 20))
+                    competitionView.layer.cornerRadius = 8.0
+                    competitionView.backgroundColor = UIColor.white
+                    competitionView.center.x = self.view.center.x
+                    self.scrollView.addSubview(competitionView)
+                    
+                    viewY = viewY + 30
+                    let competitionNameLabel = UILabel(frame: CGRect(x: 0, y: 100, width: Int(screenSize.width), height: 240))
+                    competitionNameLabel.center = CGPoint(x: 160, y: viewY)
+                    competitionNameLabel.textColor = .black
+                    competitionNameLabel.lineBreakMode = .byWordWrapping
+                    competitionNameLabel.numberOfLines = 0
+                    competitionNameLabel.textAlignment = .center
+                    competitionNameLabel.text = competitionTitle[i]
+                    competitionNameLabel.center.x = self.view.center.x
+                    competitionNameLabel.font = competitionNameLabel.font.withSize(18)
+                    self.scrollView.addSubview(competitionNameLabel)
+                    
+                    viewY = viewY + 56
+                    let competitionLinkButton = UIButton(frame: CGRect(x: 0, y: 75, width: Int(screenSize.width), height: 70))
+                    competitionLinkButton.center = CGPoint(x: 160, y: viewY)
+                    competitionLinkButton.setTitleColor(UIColor.black, for: .normal)
+                    competitionLinkButton.titleLabel?.lineBreakMode = .byWordWrapping
+                    competitionLinkButton.titleLabel?.numberOfLines = 0
+                    competitionLinkButton.backgroundColor = .white
+                    competitionLinkButton.titleLabel?.textAlignment = .center
+                    competitionLinkButton.backgroundColor = .clear
+                    competitionLinkButton.setTitleColor(.black, for: .normal)
+                    competitionLinkButton.setTitle(competitionLink[i], for: .normal)
+                    competitionLinkButton.center.x = self.view.center.x
+                    competitionLinkButton.tag = i
+                    competitionLinkButton.addTarget(self, action: #selector(self.openCompetitionLink), for: .touchUpInside)
+                    self.scrollView.addSubview(competitionLinkButton)
+                    
+                    viewY = viewY + 108
+                }
             }
             
             // Website Data
