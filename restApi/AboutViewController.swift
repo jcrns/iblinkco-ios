@@ -38,12 +38,12 @@ class AboutViewController: UIViewController {
         missionStatementTextLabel.textAlignment = .center
         missionStatementTextLabel.textColor = .black
         missionStatementTextLabel.text = "iBlinkco provides tools to maximize businesses and brands online to help them adapt to the modern world."
-        missionStatementTextLabel.font = UIFont.boldSystemFont(ofSize: 21.0)
+        missionStatementTextLabel.font = UIFont.boldSystemFont(ofSize: 20.0)
         self.view.addSubview(missionStatementTextLabel)
         
         // About iBlinkco text
         viewY = viewY + 164
-        let aboutTextLabel = UILabel(frame: CGRect(x: Int(screenSize.width)/2, y: 50, width: Int(screenSize.width - 10), height: 160))
+        let aboutTextLabel = UILabel(frame: CGRect(x: Int(screenSize.width)/2, y: 50, width: Int(screenSize.width - 10), height: 260))
         aboutTextLabel.lineBreakMode = .byWordWrapping
         aboutTextLabel.numberOfLines = 0
         aboutTextLabel.center = CGPoint(x: 160, y: viewY)
@@ -51,19 +51,19 @@ class AboutViewController: UIViewController {
         aboutTextLabel.textAlignment = .center
         aboutTextLabel.textColor = .black
         aboutTextLabel.text = "We believe that we can help our customers manage things that matter and jumpstart something that matters to them. The iBlinkco dashboard service analyzes your social media account and your website to help you maximize your presence online. We maximize your presence by providing useful tips, graphs, and displaying a users competition. Only 44% of small businesses rely on social media to generate a presence online and we are doing are best to increase that number. "
-        aboutTextLabel.font = aboutTextLabel.font.withSize(20)
+        aboutTextLabel.font = aboutTextLabel.font.withSize(18)
         self.view.addSubview(aboutTextLabel)
         
         // Background text
-        viewY = viewY + 164
-        let backgroundStoryTextLabel = UILabel(frame: CGRect(x: Int(screenSize.width)/2, y: 50, width: Int(screenSize.width - 10), height: 200))
+        viewY = viewY + 200
+        let backgroundStoryTextLabel = UILabel(frame: CGRect(x: Int(screenSize.width)/2, y: 350, width: Int(screenSize.width - 10), height: 250))
         backgroundStoryTextLabel.lineBreakMode = .byWordWrapping
         backgroundStoryTextLabel.numberOfLines = 0
         backgroundStoryTextLabel.center = CGPoint(x: 160, y: viewY)
         backgroundStoryTextLabel.center.x = self.view.center.x
         backgroundStoryTextLabel.textAlignment = .center
         backgroundStoryTextLabel.textColor = .black
-        backgroundStoryTextLabel.text = "iBlinkco was founded by Jayden Cummings when he was 15 and in his first summer of The Hidden Genius Project. By the end of that summer I have already presented I rebuilt the website in multiple computer languages but I settled on Python. iBlinkco was originally a social media consulting service until I revised the business plan and decided to create a social media management tool."
+        backgroundStoryTextLabel.text = "iBlinkco was founded by Jayden Cummings when he was 15 and in his first summer of The Hidden Genius Project. By the end of that summer I have already presented he rebuilt the website in multiple computer languages but he settled on Python. iBlinkco was originally a social media consulting service until he revised the business plan and decided to create a social media management tool."
         backgroundStoryTextLabel.font = backgroundStoryTextLabel.font.withSize(20)
         self.view.addSubview(backgroundStoryTextLabel)
         

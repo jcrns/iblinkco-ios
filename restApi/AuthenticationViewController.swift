@@ -177,6 +177,7 @@ class AuthenticationViewController: UIViewController, UIScrollViewDelegate {
         // Changing submit text
         submitButton.setTitle("Login", for: .normal)
         submitChange.setTitle("Don't have an Account? Sign Up!", for: .normal)
+        print("weferfaergfwaergae")
     }
     
     @IBAction func submitButtonTapped(_ sender: Any) {
@@ -186,8 +187,8 @@ class AuthenticationViewController: UIViewController, UIScrollViewDelegate {
         let password = passwordTextField.text
         
         if isSignIn{
-            let group = DispatchGroup()
-            group.enter()
+//            let group = DispatchGroup()
+//            group.enter()
             DispatchQueue.main.async {
                 // Syncing user requirements
                 UserDefaults.standard.setValue(email, forKey:"email");
@@ -195,12 +196,14 @@ class AuthenticationViewController: UIViewController, UIScrollViewDelegate {
                 UserDefaults.standard.setValue(password, forKey:"password");
                 UserDefaults.standard.synchronize();
                 self.callApi(email: email!, password: password!)
-                // Changing View
-                self.performSegue(withIdentifier: "loggedInSegue", sender: self)
+                print("aaa")
                 
-                group.leave()
+//                group.leave()
             }
+            // Changing View
+            self.performSegue(withIdentifier: "loggedInSegue", sender: self)
         } else {
+            print("Damn")
             self.createAccount(firstname: firstname!, lastname: lastname!, email: email!, password: password!)
         }
     }
@@ -217,10 +220,10 @@ class AuthenticationViewController: UIViewController, UIScrollViewDelegate {
             "password": password,
             "software": "ios"
         ]
-        
+        print("jajajalllllll")
         // Getting url of json postYY
         guard let url = URL(string: "https://www.iblinkco.com/signin") else { return }
-        
+
         // Defining request
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
@@ -230,6 +233,7 @@ class AuthenticationViewController: UIViewController, UIScrollViewDelegate {
         }
         request.httpBody = httpBody
         
+        print("jajajalllllll")
         let session = URLSession.shared
         session.dataTask(with: request) { (data, response, error) in
             if let response = response {
@@ -240,10 +244,10 @@ class AuthenticationViewController: UIViewController, UIScrollViewDelegate {
             if let data = data {
                 do {
                     let json = try JSONSerialization.jsonObject(with: data, options: [])
-//                    print(json)
-//                    print("Second Print Section\n")
+                    print(json)
+                    //                    print("Second Print Section\n")
                     let userDataReturned = try JSONDecoder().decode(parsedData.self, from: data)
-//
+                    //
                     print(userDataReturned)
                     
                     // Clearing session
@@ -253,19 +257,19 @@ class AuthenticationViewController: UIViewController, UIScrollViewDelegate {
                     UserDefaults.standard.set(true, forKey: "userDataReturned")
                     UserDefaults.standard.synchronize();
                     
-//                    print("Third Print Section\n")
-//                    //                        let message = userDataReturned.message as! String
-//
-//                    print("Four Print Section\n")
-//
-//                    // TEst code
-//
-//                    print(data)
-//                    print("YOooo")
+                    //                    print("Third Print Section\n")
+                    //                    //                        let message = userDataReturned.message as! String
+                    //
+                    //                    print("Four Print Section\n")
+                    //
+                    //                    // TEst code
+                    //
+                    //                    print(data)
+                    //                    print("YOooo")
                     
                     
                     
-                    
+                    print("jajajalllllll")
                     
                     //                        if message == "success"{
                     let defaults = UserDefaults.standard
@@ -273,7 +277,7 @@ class AuthenticationViewController: UIViewController, UIScrollViewDelegate {
                     // Saving user instagram and twitter data in variable
                     //                            let instagramDataReturned = userDataReturned.returnedInfoInstagram.bio as! String
                     //                            print(instagramDataReturned)
-//                    print("Six Print Section\n")
+                    //                    print("Six Print Section\n")
                     
                     // Saving returned user data in variable
                     let firstname = userDataReturned.account.firstname as! String
@@ -323,7 +327,7 @@ class AuthenticationViewController: UIViewController, UIScrollViewDelegate {
                     var instagramPostsNumberOfLikes =  [Int]()
                     var instagramPostsPicUrl = [String]()
                     var instagramPostsPictureText = [String]()
-//                    var instagramPostsTips = [String: Array<String>]()
+                    //                    var instagramPostsTips = [String: Array<String>]()
                     var instagramPostsTips = [[String]]()
                     var counter = 0
                     for post in instagramPosts {
@@ -385,7 +389,7 @@ class AuthenticationViewController: UIViewController, UIScrollViewDelegate {
                     defaults.synchronize()
                     defaults.set(twitterBio, forKey:"twitterBio");
                     defaults.synchronize();
-                        
+                    
                     // Tweets
                     defaults.set(tweetsText, forKey: "tweetsText")
                     defaults.synchronize();
@@ -393,7 +397,7 @@ class AuthenticationViewController: UIViewController, UIScrollViewDelegate {
                     defaults.synchronize();
                     defaults.set(tweetsTips, forKey: "tweetsTips")
                     defaults.synchronize();
-                        
+                    
                     defaults.set(totalNumberOfFollowers, forKey:"totalNumberOfFollowers")
                     defaults.synchronize()
                     defaults.set(name, forKey:"name");
@@ -487,7 +491,7 @@ class AuthenticationViewController: UIViewController, UIScrollViewDelegate {
             }
             
             }.resume()
-
+        
     }
     func clearSession(){
         // Clearing user defaults
