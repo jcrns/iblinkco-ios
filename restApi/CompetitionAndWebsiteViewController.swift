@@ -66,6 +66,32 @@ class CompetitionAndWebsiteViewController: UIViewController {
             // Competition
             if competitionLink[0] == "null" {
                 print("aaalmnoioh iuno")
+                
+                let competitionView = UIView(frame: CGRect(x: 0, y: viewY, width: Int(screenSize.width), height: viewHeight+64))
+                competitionView.backgroundColor = UIColor.white
+                competitionView.center.x = self.view.center.x
+                self.scrollView.addSubview(competitionView)
+                
+                viewY = viewY + 25
+                let competitionTitle = UILabel(frame: CGRect(x: 0, y: 50, width: Int(screenSize.width), height: 160))
+                competitionTitle.center = CGPoint(x: 160, y: viewY)
+                competitionTitle.textColor = .black
+                competitionTitle.textAlignment = .center
+                competitionTitle.text = "Connect Competion"
+                competitionTitle.center.x = self.view.center.x
+                competitionTitle.font = competitionTitle.font.withSize(20)
+                self.scrollView.addSubview(competitionTitle)
+                
+                viewY = viewY + 30
+                
+                let competitionConnectTextBox = UITextField(frame: CGRect(x: 0, y: 50, width: Int(screenSize.width), height: 40))
+                competitionConnectTextBox.layer.borderColor = blackColor.cgColor
+                competitionConnectTextBox.center = CGPoint(x: 225, y: viewY)
+                competitionConnectTextBox.center.x = self.view.center.x
+                competitionConnectTextBox.placeholder = "Enter your niche or business type"
+                self.scrollView.addSubview(competitionConnectTextBox)
+                
+                viewY = viewY + 200
             } else {
                 let competitionCount = competitionTitle.count - 1
                 for i in 0...competitionCount {
@@ -107,7 +133,7 @@ class CompetitionAndWebsiteViewController: UIViewController {
                     viewY = viewY + 108
                 }
             }
-            
+
             // Website Data
             let websiteLinkCount = websiteLinks.count*24
             let websiteView = UIView(frame: CGRect(x: 0, y: viewY, width: Int(screenSize.width), height: viewHeight+websiteLinkCount+64))

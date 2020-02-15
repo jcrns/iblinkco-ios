@@ -16,7 +16,7 @@ class AboutViewController: UIViewController {
         let screenSize: CGRect = UIScreen.main.bounds
         
         // About title
-        var viewY = 148
+        var viewY = 128
         let aboutTitleTextLabel = UILabel(frame: CGRect(x: Int(screenSize.width)/2, y: 50, width: Int(screenSize.width - 10), height: 160))
         aboutTitleTextLabel.lineBreakMode = .byWordWrapping
         aboutTitleTextLabel.numberOfLines = 0
@@ -55,18 +55,18 @@ class AboutViewController: UIViewController {
         self.view.addSubview(aboutTextLabel)
         
         // Background text
-        viewY = viewY + 200
-        let backgroundStoryTextLabel = UILabel(frame: CGRect(x: Int(screenSize.width)/2, y: 350, width: Int(screenSize.width - 10), height: 250))
-        backgroundStoryTextLabel.lineBreakMode = .byWordWrapping
-        backgroundStoryTextLabel.numberOfLines = 0
-        backgroundStoryTextLabel.center = CGPoint(x: 160, y: viewY)
-        backgroundStoryTextLabel.center.x = self.view.center.x
-        backgroundStoryTextLabel.textAlignment = .center
-        backgroundStoryTextLabel.textColor = .black
-        backgroundStoryTextLabel.text = "iBlinkco was founded by Jayden Cummings when he was 15 and in his first summer of The Hidden Genius Project. By the end of that summer I have already presented he rebuilt the website in multiple computer languages but he settled on Python. iBlinkco was originally a social media consulting service until he revised the business plan and decided to create a social media management tool."
-        backgroundStoryTextLabel.font = backgroundStoryTextLabel.font.withSize(20)
-        self.view.addSubview(backgroundStoryTextLabel)
-        
+//        viewY = viewY + 200
+//        let backgroundStoryTextLabel = UILabel(frame: CGRect(x: Int(screenSize.width)/2, y: 350, width: Int(screenSize.width - 10), height: 250))
+//        backgroundStoryTextLabel.lineBreakMode = .byWordWrapping
+//        backgroundStoryTextLabel.numberOfLines = 0
+//        backgroundStoryTextLabel.center = CGPoint(x: 160, y: viewY)
+//        backgroundStoryTextLabel.center.x = self.view.center.x
+//        backgroundStoryTextLabel.textAlignment = .center
+//        backgroundStoryTextLabel.textColor = .black
+//        backgroundStoryTextLabel.text = "iBlinkco was founded by Jayden Cummings when he was 15 and in his first summer of The Hidden Genius Project. By the end of that summer I have already presented he rebuilt the website in multiple computer languages but he settled on Python. iBlinkco was originally a social media consulting service until he revised the business plan and decided to create a social media management tool."
+//        backgroundStoryTextLabel.font = backgroundStoryTextLabel.font.withSize(20)
+//        self.view.addSubview(backgroundStoryTextLabel)
+//
         // Recognizing swipe right gesture
         let aboutSwipeRightGesture = UISwipeGestureRecognizer(target: self, action: #selector(self.aboutToStreamSelectAndTipsSegueGestureFunction))
         aboutSwipeRightGesture.direction = UISwipeGestureRecognizer.Direction.right
